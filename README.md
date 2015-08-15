@@ -1,4 +1,4 @@
-INSTALLATION:
+ESSENTIAL:
 	    
 	    ESSENTIAL DETAILS FOR BUILDING
 	    mkdir /home/user/SDK/
@@ -7,7 +7,8 @@ INSTALLATION:
 	    unzip CPP-SMS-Toolkit-1.0.0.zip
 	    make
 	    sudo make install
-	    
+
+INSTALLATION:	    
 	    MAIN PROGRAM BUILDING
 	    make
 	    sudo make install
