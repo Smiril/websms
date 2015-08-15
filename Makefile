@@ -1,3 +1,8 @@
+NAME := websms
+MAJOR := 1
+MINOR := 0
+LIBNAME := $(NAME)
+VERSION := $(LIBNAME) $(MAJOR).$(MINOR)
 LIBS := -lwebsms -lcurl -ljansson
 PREFIX := /bin
 CXX := g++
