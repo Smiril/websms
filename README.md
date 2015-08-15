@@ -18,3 +18,8 @@ INSTALLATION:
 UNINSTALL:
 		
 	    sudo make uninstall
+
+
+WIKI:
+	   
+	   https://github.com/Smiril/websms/wiki/
