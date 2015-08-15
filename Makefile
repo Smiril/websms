@@ -13,5 +13,5 @@ uninstall: websms websms-console
 	rm -rf /bin/websms
 	rm -rf /bin/websms-console
 clean: websms websms-console
-        rm -rf websms
-        rm -rf websms-console
+	rm -rf websms
+	rm -rf websms-console
