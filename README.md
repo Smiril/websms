@@ -22,4 +22,4 @@ UNINSTALL:
 
 WIKI:
 	   
-	   https://github.com/Smiril/websms/wiki/
+	   <a href="https://github.com/Smiril/websms/wiki/">Wiki</a>
