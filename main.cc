@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <gtk/gtk.h>
-#include <websms/websms.h>
+#include <websms/websms.h> // <<< Websms.at SDK
 #include <iostream>
 #include <cstring>
 #include <memory>
+#include <errno.h>
 
 using namespace std;
-using namespace websms;
+using namespace websms; // <<< Websms.at SDK namespace
 
 char *text = NULL;
 
@@ -82,7 +83,7 @@ int main(int argc, char *argv[]) {
     buttonx = gtk_link_button_new_with_label("https://websms.at/websms-testen","Visit the SMS Provider");
     gtk_box_pack_start(GTK_BOX(vbox), buttonx, FALSE, FALSE, 0);
      
-    //fprintf(stderr,"Status message: %s \n", gtk_getlasterror());
+    fprintf(stderr,"Status message: %s \n", strerror(errno));
     
     g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
     g_signal_connect(button, "clicked", G_CALLBACK(change_text), number);
@@ -135,14 +136,14 @@ void change_text(GtkButton *trigger2, gpointer numberx)
 
 void sendsms(GtkButton *trigger3, gpointer labelx)
 {     
-      SmsClient client(c, d, "https://api.websms.com");
-      TextMessage message((int64_t)a, UTF8((char *)b));
+      SmsClient client(c, d, "https://api.websms.com"); // <<< Websms.at specific SDK Client
+      TextMessage message((int64_t)a, UTF8((char *)b)); // <<< Websms.at specific SDK Transmission Format
       
       try {
         // Send the message.
-        MessageResponse response = client.Send(message,
-               1,      // Max. sms per message
-               false);  // Test message?
+        MessageResponse response = client.Send(message, // <<< Websms.at specific SDK Transmission
+               1,      	// Max. sms per message just Message count
+               false);  // Test message? false means NO
 	
       }catch (const Exception& e) {
         // Handle exceptions.	
