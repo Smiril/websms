@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <gtk/gtk.h>
 #include <websms/websms.h>
+#include <iostream>
+#include <cstring>
+#include <memory>
 
 using namespace std;
 using namespace websms;
@@ -89,7 +92,8 @@ int main(int argc, char *argv[]) {
     g_signal_connect(button, "clicked", G_CALLBACK(getuserx), user);
     g_signal_connect(button, "clicked", G_CALLBACK(getpassx), pass);
     g_signal_connect(button, "clicked", G_CALLBACK(sendsms), NULL);
-	
+    
+    
     gtk_widget_show_all(window);
  
     gtk_main();
@@ -142,7 +146,14 @@ void sendsms(GtkButton *trigger3, gpointer labelx)
 	
       }catch (const Exception& e) {
         // Handle exceptions.	
-	fprintf(stderr,"Message: %s %s \n%s\n",(char *)a,(char *)b,e.What());
+	GtkWidget *msgbox;
+	char *wex = NULL;
+	wex = g_strdup_printf("Message: %s \n\nTo Number: %s \n\n%s ",(char *)b,(char *)a,e.What());
+        msgbox = gtk_message_dialog_new_with_markup(NULL,GTK_DIALOG_MODAL, GTK_MESSAGE_INFO, GTK_BUTTONS_OK, wex );
+	gtk_window_set_title(GTK_WINDOW(msgbox), "INFO");
+	gtk_dialog_run(GTK_DIALOG(msgbox));
+	gtk_widget_destroy( GTK_WIDGET(msgbox) );
+	fprintf(stderr,"Message: %s \n\nTo Number: %s \n\n%s \n",(char *)b,(char *)a,e.What());
 	fprintf(stderr,"Status message: %s \n", e.What());
       }
       
