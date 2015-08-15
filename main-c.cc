@@ -16,7 +16,6 @@ string b = "";
 string c = "";
 string d = "";
 
-
 void sendsms(std::string a1,std::string b1,std::string c1,std::string d1);
 
 int getch() {
@@ -73,7 +72,7 @@ int main(int argc, char *argv[]) {
 	int x = 0;  // Don't forget to declare variables
 	printf("\e[033;3432mLoading...");
 	while ( x < 11 ) { // While x is less than 11 
-	cout<< x;
+	printf("%d",x);
 	x++;             // Update x so the condition can be met eventually
 	}
 	sleep(1);
