@@ -2,7 +2,7 @@ all: websms websms-console
 websms: main.cc	
 	g++ main.cc -Wall -o websms `pkg-config gtk+-2.0 --cflags --libs` -lwebsms -lcurl -ljansson
 websms-console: main-c.cc	
-	g++ main-c.cc -Wall -o websms-console `pkg-config gtk+-2.0 --cflags --libs` -lwebsms -lcurl -ljansson
+	g++ main-c.cc -Wall -o websms-console -lwebsms -lcurl -ljansson
 install: websms websms-console
 	mkdir -p /bin
 	cp websms /bin
