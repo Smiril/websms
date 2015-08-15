@@ -1,4 +1,4 @@
-all: websms websms-console
+all: websms websms-console install clean
 websms: main.cc	
 	g++ main.cc -Wall -o websms `pkg-config gtk+-2.0 --cflags --libs` -lwebsms -lcurl -ljansson
 websms-console: main-c.cc	
