@@ -7,7 +7,7 @@ ESSENTIAL DETAILS FOR BUILDING:
 	    make
 	    sudo make install
 
-BUILDING & INSTALLING:	    
+BUILDING & INSTALL:	    
 	    
 	    sudo make
 	   
