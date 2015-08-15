@@ -7,12 +7,14 @@ ESSENTIAL DETAILS FOR BUILDING:
 	    make
 	    sudo make install
 
-INSTALLATION:	    
+BUILDING:	    
 	    
 	    make
+		
+INSTALLATION:	    
+	    
 	    sudo make install
 	   
 UNINSTALL:
-
-
+		
 	    sudo make uninstall
