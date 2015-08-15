@@ -1,6 +1,5 @@
-ESSENTIAL:
+ESSENTIAL DETAILS FOR BUILDING:
 	    
-	    ESSENTIAL DETAILS FOR BUILDING
 	    mkdir /home/user/SDK/
 	    cd /home/user/SDK/
 	    wget https://websms.at/images/websms/developer/sdks/CPP-SMS-Toolkit-1.0.0.zip
@@ -9,8 +8,7 @@ ESSENTIAL:
 	    sudo make install
 
 INSTALLATION:	    
-            
-	    MAIN PROGRAM BUILDING
+	    
 	    make
 	    sudo make install
 	   
