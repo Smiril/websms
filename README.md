@@ -20,6 +20,3 @@ UNINSTALL:
 	    sudo make uninstall
 
 
-WIKI:
-	   
-	   <a href="https://github.com/Smiril/websms/wiki/">Wiki</a>
