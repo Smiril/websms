@@ -19,4 +19,6 @@ UNINSTALL:
 		
 	    sudo make uninstall
 
-
+DELETE:
+		
+	    make clean
