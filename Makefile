@@ -1,5 +1,5 @@
 all: websms
-websms: main.cc	
+websms: main-1.0.cc	
 	g++ main-1.0.cc -Wall -o websms `pkg-config gtk+-2.0 --cflags --libs` -lwebsms -lcurl -ljansson
 install: websms
 	mkdir -p /bin
