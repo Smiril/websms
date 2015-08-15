@@ -7,18 +7,10 @@ ESSENTIAL DETAILS FOR BUILDING:
 	    make
 	    sudo make install
 
-BUILDING:	    
+BUILDING & INSTALLING:	    
 	    
-	    make
-		
-INSTALLATION:	    
-	    
-	    sudo make install
+	    sudo make
 	   
 UNINSTALL:
 		
 	    sudo make uninstall
-
-DELETE:
-		
-	    make clean
