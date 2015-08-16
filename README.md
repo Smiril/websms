@@ -9,6 +9,5 @@ UNINSTALL:
 SDK MODIFY
 
 	   sh update-sdk.sh
-	   
-	   sudo make
+	 
 	   
