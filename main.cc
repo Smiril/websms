@@ -13,13 +13,13 @@ char *text = NULL;
 
 const char *a,*b,*c,*d;
 
-void sendsms(GtkButton *trigger3, gpointer labelx);
-void change_text(GtkButton *trigger2, gpointer numberx);
-void change_label(GtkButton *trigger1, gpointer label);
-void getnumberx(GtkButton *dash1,gpointer dash11);
-void getmsgx(GtkButton *dash2,gpointer dash22);
-void getuserx(GtkButton *dash3,gpointer dash33);
-void getpassx(GtkButton *dash4,gpointer dash44);
+void sendsms();
+void change_text(GtkButton *,gpointer numberx);
+void change_label(GtkButton *,gpointer label);
+void getnumberx(GtkButton *,gpointer dash11);
+void getmsgx(GtkButton *,gpointer dash22);
+void getuserx(GtkButton *,gpointer dash33);
+void getpassx(GtkButton *,gpointer dash44);
 
 int main(int argc, char *argv[]) {
     //freopen( "error.log", "a+", stderr );
@@ -104,39 +104,39 @@ int main(int argc, char *argv[]) {
     return 0;
 } 
 
-void getnumberx(GtkButton *dash1,gpointer dash11)
+void getnumberx(GtkButton *,gpointer dash11)
 {
   a = gtk_entry_get_text(GTK_ENTRY(dash11));
 }
 
-void getmsgx(GtkButton *dash2,gpointer dash22)
+void getmsgx(GtkButton *,gpointer dash22)
 {
   b = gtk_entry_get_text(GTK_ENTRY(dash22));
 }
 
-void getuserx(GtkButton *dash3,gpointer dash33)
+void getuserx(GtkButton *,gpointer dash33)
 {
   c = gtk_entry_get_text(GTK_ENTRY(dash33));
 }
 
-void getpassx(GtkButton *dash4,gpointer dash44)
+void getpassx(GtkButton *,gpointer dash44)
 {
   d = gtk_entry_get_text(GTK_ENTRY(dash44));
 }
-void change_label(GtkButton *trigger1, gpointer label)
+void change_label(GtkButton *,gpointer label)
 {
     gtk_label_set_text(GTK_LABEL(label), text);
 }
  
-void change_text(GtkButton *trigger2, gpointer numberx)
+void change_text(GtkButton *,gpointer numberx)
 {	 
       g_free(text);
       text = g_strdup(gtk_entry_get_text(GTK_ENTRY(numberx)));
 }  
 
-void sendsms(GtkButton *trigger3, gpointer labelx)
+void sendsms()
 {     
-      SmsClient client(c, d, "https://api.websms.com"); // <<< Websms.at specific SDK Client
+      SmsClient client(c, d, "https://api.websms.com/json"); // <<< Websms.at specific SDK Client
       TextMessage message((int64_t)a, UTF8((char *)b)); // <<< Websms.at specific SDK Transmission Format
       
       try {
