@@ -125,7 +125,7 @@ void sendsms(std::string a1,std::string b1,std::string c1,std::string d1)
                1,      	// Max. sms per message just Message count
                false);  // Test message? false means NO a true Message not a Test!
 	    // Print the response.
-	printf("Status message: \x1B[32m%s\x1B[39m\nStatus code: \x1B[32m%d\x1B[39m\n",
+	printf("\x1B[39mStatus message: \x1B[32m%s\x1B[39m\nStatus code: \x1B[32m%d\x1B[39m\n",
            response.status_message(),
            response.status_code());
     
