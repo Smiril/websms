@@ -146,7 +146,7 @@ void sendsms()
                false);  // Test message?
 	GtkWidget *msgboxxx;
 	char *wexx = NULL;
-	wexx = g_strdup_printf("Message: %s \n\nTo Number: %s \n\n%s \n%d \n",(char *)b,(char *)a,response.status_message(),response.status_code());
+	wexx = g_strdup_printf("Message: %s \n\nTo Number: %s \n\nStatus message: %s\nStatus code: %d\n",(char *)b,(char *)a,response.status_message(),response.status_code());
         msgboxxx = gtk_message_dialog_new_with_markup(NULL,GTK_DIALOG_MODAL, GTK_MESSAGE_INFO, GTK_BUTTONS_OK, wexx );
 	gtk_window_set_title(GTK_WINDOW(msgboxxx), "INFO");
 	gtk_dialog_run(GTK_DIALOG(msgboxxx));
