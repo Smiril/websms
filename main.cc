@@ -143,8 +143,16 @@ void sendsms()
         // Send the message.
         MessageResponse response = client.Send(message, // <<< Websms.at specific SDK Transmission
                1,      	// Max. sms per message just Message count
-               false);  // Test message? false means NO
-	
+               false);  // Test message?
+	GtkWidget *msgboxxx;
+	char *wexx = NULL;
+	wexx = g_strdup_printf("Message: %s \n\nTo Number: %s \n\n%s \n%d \n",(char *)b,(char *)a,response.status_message(),response.status_code());
+        msgboxxx = gtk_message_dialog_new_with_markup(NULL,GTK_DIALOG_MODAL, GTK_MESSAGE_INFO, GTK_BUTTONS_OK, wexx );
+	gtk_window_set_title(GTK_WINDOW(msgboxxx), "INFO");
+	gtk_dialog_run(GTK_DIALOG(msgboxxx));
+	gtk_widget_destroy( GTK_WIDGET(msgboxxx) );
+
+    
       }catch (const Exception& e) {
         // Handle exceptions.	
 	GtkWidget *msgbox;
