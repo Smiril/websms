@@ -70,13 +70,13 @@ int main(/*int argc, char *argv[]*/) {
 	//freopen( "error.log", "a+", stderr );
 	printf("Using %s ...\n",Version());
 	int x = 0;  // Don't forget to declare variables
-	printf("\e[033;3432mLoading...");
+	printf("\x1B[33mLoading...");
 	while ( x < 11 ) { // While x is less than 11 
 	printf("%d",x);
 	x++;             // Update x so the condition can be met eventually
 	}
 	//sleep(1);
-	printf(" \e[033;32mFinished\e[033;39m\n");
+	printf(" \x1B[32mFinished\x1B[39m\n");
 	// Uncomment version you want!
   // v.1.0
   /* 
@@ -131,8 +131,8 @@ void sendsms(std::string a1,std::string b1,std::string c1,std::string d1)
     
       }catch (const Exception& e) {
         // Handle exceptions.
-	fprintf(stderr,"\n\nMessage: %s \nTo Number: %s\n\e[033;31m%s\n\e[033;39m \n",(char *)b1.c_str(),(char *)a1.c_str(),e.What());
-	fprintf(stderr,"Status message: \e[033;31m %s\n\e[033;39m  \n", e.What());
+	fprintf(stderr,"\n\nMessage: %s \nTo Number: %s\n\x1B[31m%s\n\x1B[39m \n",(char *)b1.c_str(),(char *)a1.c_str(),e.What());
+	fprintf(stderr,"Status message: \x1B[31m %s\n\x1B[39m  \n", e.What());
 	}
       
 }
