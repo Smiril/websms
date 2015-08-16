@@ -66,7 +66,7 @@ string getpass(const char *prompt, bool show_asterisk=true)
 }
 
 
-int main(int argc, char *argv[]) {
+int main(/*int argc, char *argv[]*/) {
 	//freopen( "error.log", "a+", stderr );
 	printf("Using %s ...\n",Version());
 	int x = 0;  // Don't forget to declare variables
@@ -75,7 +75,7 @@ int main(int argc, char *argv[]) {
 	printf("%d",x);
 	x++;             // Update x so the condition can be met eventually
 	}
-	sleep(1);
+	//sleep(1);
 	printf(" \e[033;32mFinished\e[033;39m\n");
 	// Uncomment version you want!
   // v.1.0
