@@ -1,3 +1,7 @@
+BEFORE BUILDING:
+
+	    sh opensuse_before_setup.sh
+
 BUILDING & INSTALL:	    
 	    
 	    sh setup.sh
