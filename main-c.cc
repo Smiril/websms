@@ -124,7 +124,7 @@ void sendsms(std::string a1,std::string b1,std::string c1,std::string d1,std::st
 {     
       SmsClient client(c1.c_str(), d1.c_str(), "https://api.websms.com/json"); // <<< Websms.at specific SDK Client
       TextMessage message((int64_t)a1.c_str(), UTF8((char *)b1.c_str())); // <<< Websms.at specific SDK Transmission Format
-      // God's will welcome but User vote and got Symphaty with the Devil
+      // God's will welcome but User vote and got some Sympathy with the Devil ...
       std::string god = "y";
       std::string devil = "y";
       if(dx.c_str() == god && dd.c_str() != devil)
