@@ -126,44 +126,8 @@ void sendsms(std::string a1,std::string b1,std::string c1,std::string d1)
                false);  // Test message? false means NO a true Message not a Test!
       }catch (const Exception& e) {
         // Handle exceptions.
-	switch((int64_t)e.What()) 
-	      {
-	      case 2000: 
-			{
-			fprintf(stderr,"\n\nMessage: %s \nTo Number: %s\n\e[033;32m%s\n\e[033;39m \n",(char *)b1.c_str(),(char *)a1.c_str(),e.What());
-			fprintf(stderr,"Status message: \e[033;32m %s\n\e[033;39m  \n", e.What());
-			break;
-			}
-	      case 2001: 
-			{
-			fprintf(stderr,"\n\nMessage: %s \nTo Number: %s\n\e[033;3432m%s\n\e[033;39m \n",(char *)b1.c_str(),(char *)a1.c_str(),e.What());
-			fprintf(stderr,"Status message: \e[033;3432m %s\n\e[033;39m  \n", e.What());
-			break;
-			}
-	      case 4003: 
-			{
-			fprintf(stderr,"\n\nMessage: %s \nTo Number: %s\n\e[033;3432m%s\n\e[033;39m \n",(char *)b1.c_str(),(char *)a1.c_str(),e.What());
-			fprintf(stderr,"Status message: \e[033;3432m %s\n\e[033;39m  \n", e.What());
-			break;
-			}
-	      case 4014: 
-			{
-			fprintf(stderr,"\n\nMessage: %s \nTo Number: %s\n\e[033;3432m%s\n\e[033;39m \n",(char *)b1.c_str(),(char *)a1.c_str(),e.What());
-			fprintf(stderr,"Status message: \e[033;3432m %s\n\e[033;39m  \n", e.What());
-			break;
-			}
-	      case 4022: 
-			{
-			fprintf(stderr,"\n\nMessage: %s \nTo Number: %s\n\e[033;3432m%s\n\e[033;39m \n",(char *)b1.c_str(),(char *)a1.c_str(),e.What());
-			fprintf(stderr,"Status message: \e[033;3432m %s\n\e[033;39m  \n", e.What());
-			break;
-			}
-	default:
-		{
-		fprintf(stderr,"\n\nMessage: %s \nTo Number: %s\n\e[033;31m%s\n\e[033;39m \n",(char *)b1.c_str(),(char *)a1.c_str(),e.What());
-		fprintf(stderr,"Status message: \e[033;31m %s\n\e[033;39m  \n", e.What());
-		}
-	      }
+	fprintf(stderr,"\n\nMessage: %s \nTo Number: %s\n\e[033;31m%s\n\e[033;39m \n",(char *)b1.c_str(),(char *)a1.c_str(),e.What());
+	fprintf(stderr,"Status message: \e[033;31m %s\n\e[033;39m  \n", e.What());
 	}
       
 }
