@@ -1,6 +1,6 @@
 NAME := websms
 MAJOR := 1
-MINOR := 0
+MINOR := 2
 LIBNAME := $(NAME)
 VERSION := $(LIBNAME) $(MAJOR).$(MINOR)
 LIBS := -lwebsms -lcurl -ljansson
