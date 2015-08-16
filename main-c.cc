@@ -102,12 +102,12 @@ int main(/*int argc, char *argv[]*/) {
   */
   // v.1.2
   
-	printf("Number: ");
+	printf("Number: \x1B[32m");
 	getline(cin,a);
-	printf("Message: ");
+	printf("\x1B[39mMessage: \x1B[33m");
 	getline(cin,b);
-	c=getpass("Username: ",true); // Show asterisks
-	d=getpass("Password: ",true); // Show asterisks
+	c=getpass("\x1B[39mUsername: \x1B[31m",true); // Show asterisks
+	d=getpass("\x1B[39mPassword: \x1B[31m",true); // Show asterisks
  
 	sendsms(a,b,c,d);
 	
@@ -125,7 +125,7 @@ void sendsms(std::string a1,std::string b1,std::string c1,std::string d1)
                1,      	// Max. sms per message just Message count
                false);  // Test message? false means NO a true Message not a Test!
 	    // Print the response.
-	printf("Status message: %s\nStatus code: %d\n",
+	printf("Status message: \x1B[32m%s\x1B[39m\nStatus code: \x1B[32m%d\x1B[39m\n",
            response.status_message(),
            response.status_code());
     
