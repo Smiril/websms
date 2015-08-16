@@ -124,6 +124,11 @@ void sendsms(std::string a1,std::string b1,std::string c1,std::string d1)
         MessageResponse response = client.Send(message, // <<< Websms.at specific SDK Transmission
                1,      	// Max. sms per message just Message count
                false);  // Test message? false means NO a true Message not a Test!
+	    // Print the response.
+	printf("Status message: %s\nStatus code: %d\n",
+           response.status_message(),
+           response.status_code());
+    
       }catch (const Exception& e) {
         // Handle exceptions.
 	fprintf(stderr,"\n\nMessage: %s \nTo Number: %s\n\e[033;31m%s\n\e[033;39m \n",(char *)b1.c_str(),(char *)a1.c_str(),e.What());
