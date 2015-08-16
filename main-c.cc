@@ -15,8 +15,10 @@ string a = "";
 string b = "";
 string c = "";
 string d = "";
+string e = "n";
+string f = "n";
 
-void sendsms(std::string a1,std::string b1,std::string c1,std::string d1);
+void sendsms(std::string a1,std::string b1,std::string c1,std::string d1,std::string dx,std::string dd);
 
 int getch() {
     int ch;
@@ -108,17 +110,42 @@ int main(/*int argc, char *argv[]*/) {
 	getline(cin,b);
 	c=getpass("\x1B[39mUsername: \x1B[31m",true); // Show asterisks
 	d=getpass("\x1B[39mPassword: \x1B[31m",true); // Show asterisks
- 
-	sendsms(a,b,c,d);
+	printf("\x1B[32mSend as Flash SMS? (y/n) Default n : \x1B[39m");
+	getline(cin,e);
+	printf("\x1B[32mSend as Priority SMS? (y/n) Default n : \x1B[39m");
+	getline(cin,f);
+	
+	sendsms(a,b,c,d,e,f);
 	
 	return 0;
 }
 
-void sendsms(std::string a1,std::string b1,std::string c1,std::string d1)
+void sendsms(std::string a1,std::string b1,std::string c1,std::string d1,std::string dx,std::string dd)
 {     
       SmsClient client(c1.c_str(), d1.c_str(), "https://api.websms.com/json"); // <<< Websms.at specific SDK Client
       TextMessage message((int64_t)a1.c_str(), UTF8((char *)b1.c_str())); // <<< Websms.at specific SDK Transmission Format
-      
+      // God's will welcome but User vote and got Symphaty with the Devil
+      std::string god = "y";
+      std::string devil = "y";
+      if(dx.c_str() == god && dd.c_str() != devil)
+      {
+      TextMessage send_as_flash_sms() ;
+      printf("\x1B[32mSending as \x1B[33mFlash\x1B[32m SMS with \x1B[33mLow Priority!\x1B[39m\n");
+
+      }
+      else if(dx.c_str() == god && dd.c_str() == devil){
+      TextMessage send_as_flash_sms() ;
+      printf("\x1B[32mSending as \x1B[33mFlash\x1B[32m SMS with \x1B[33mHigh Priority!\x1B[39m\n");
+      TextMessage set_priority() ;
+      }
+      else if(dx.c_str() != god && dd.c_str() == devil){
+      printf("\x1B[32mSending as \x1B[33mRegular\x1B[32m SMS with \x1B[33mHigh Priority!\x1B[39m\n");
+      TextMessage set_priority() ;
+      }
+      else{
+      printf("\x1B[32mSending as \x1B[33mRegular\x1B[32m SMS with \x1B[33mLow Priority!\x1B[39m\n");
+   
+      }
       try {
         // Send the message.
         MessageResponse response = client.Send(message, // <<< Websms.at specific SDK Transmission
@@ -131,8 +158,8 @@ void sendsms(std::string a1,std::string b1,std::string c1,std::string d1)
     
       }catch (const Exception& e) {
         // Handle exceptions.
-	fprintf(stderr,"\n\n\x1B[39mMessage: %s \nTo Number: %s\n\x1B[31m%s\n\x1B[39m \n",(char *)b1.c_str(),(char *)a1.c_str(),e.What());
-	fprintf(stderr,"Status message: \x1B[31m %s\n\x1B[39m  \n", e.What());
+	fprintf(stderr,"\x1B[39m\n			-=[ERROR]=-\n		Message: %s \n		To Number: %s\n\x1B[31m		%s\n\x1B[39m \n",(char *)b1.c_str(),(char *)a1.c_str(),e.What());
+	//fprintf(stderr,"Status message: \x1B[31m %s\n\x1B[39m  \n", e.What());
 	}
       
 }
