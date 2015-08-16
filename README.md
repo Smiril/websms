@@ -5,3 +5,8 @@ BUILDING & INSTALL:
 UNINSTALL:
 		
 	    sh uninstall.sh
+
+SDK MODIFY
+
+	   sh update-sdk.sh
+	   
