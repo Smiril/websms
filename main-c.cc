@@ -158,7 +158,7 @@ void sendsms(std::string a1,std::string b1,std::string c1,std::string d1,std::st
     
       }catch (const Exception& e) {
         // Handle exceptions.
-	fprintf(stderr,"\x1B[39m\n			-=[ERROR]=-\n		Message: %s \n		To Number: %s\n\x1B[31m		%s\n\x1B[39m \n",(char *)b1.c_str(),(char *)a1.c_str(),e.What());
+	fprintf(stderr,"\x1B[39m\n			-=[ERROR]=-\n		Message: %s \n		To Number: %s\n		 -=[ \x1B[31m%s\x1B[39m ]=- \n",(char *)b1.c_str(),(char *)a1.c_str(),e.What());
 	//fprintf(stderr,"Status message: \x1B[31m %s\n\x1B[39m  \n", e.What());
 	}
       
