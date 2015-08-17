@@ -17,6 +17,8 @@ string c = "";
 string d = "";
 string e = "n";
 string f = "n";
+string h = "n";
+string hh = "y";
 
 void sendsms(std::string a1,std::string b1,std::string c1,std::string d1,std::string dx,std::string dd);
 
@@ -103,7 +105,7 @@ int main(/*int argc, char *argv[]*/) {
 	d = argv[4];
   */
   // v.1.2
-  
+	Again:
 	printf("Number: \x1B[32m");
 	getline(cin,a);
 	printf("\x1B[39mMessage: \x1B[33m");
@@ -117,6 +119,16 @@ int main(/*int argc, char *argv[]*/) {
 	
 	sendsms(a,b,c,d,e,f);
 	
+	printf("\x1B[32mSend again SMS? (y/n) Default n : \x1B[39m");
+	getline(cin,h);
+	
+	if(h.c_str() == hh.c_str())
+	{
+	  goto Again;
+	}
+	else{
+	exit(0);
+	}
 	return 0;
 }
 
@@ -124,28 +136,28 @@ void sendsms(std::string a1,std::string b1,std::string c1,std::string d1,std::st
 {     
       SmsClient client(c1.c_str(), d1.c_str(), "https://api.websms.com/json"); // <<< Websms.at specific SDK Client
       TextMessage message((int64_t)a1.c_str(), UTF8((char *)b1.c_str())); // <<< Websms.at specific SDK Transmission Format
+      // TextMessage recipient_address_list();
       // God's will welcome but User vote and got some Sympathy with the Devil ...
       std::string god = "y";
       std::string devil = "y";
       if(dx.c_str() == god && dd.c_str() != devil)
       {
-      TextMessage send_as_flash_sms() ;
+      TextMessage send_as_flash_sms();
       printf("\x1B[32mSending as \x1B[33mFlash\x1B[32m SMS with \x1B[33mLow Priority!\x1B[39m\n");
-
       }
       else if(dx.c_str() == god && dd.c_str() == devil){
-      TextMessage send_as_flash_sms() ;
+      TextMessage send_as_flash_sms();
       printf("\x1B[32mSending as \x1B[33mFlash\x1B[32m SMS with \x1B[33mHigh Priority!\x1B[39m\n");
-      TextMessage set_priority() ;
+      TextMessage set_priority();
       }
       else if(dx.c_str() != god && dd.c_str() == devil){
       printf("\x1B[32mSending as \x1B[33mRegular\x1B[32m SMS with \x1B[33mHigh Priority!\x1B[39m\n");
-      TextMessage set_priority() ;
+      TextMessage set_priority();
       }
       else{
       printf("\x1B[32mSending as \x1B[33mRegular\x1B[32m SMS with \x1B[33mLow Priority!\x1B[39m\n");
-   
       }
+      
       try {
         // Send the message.
         MessageResponse response = client.Send(message, // <<< Websms.at specific SDK Transmission
