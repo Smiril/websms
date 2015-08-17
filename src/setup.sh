@@ -1,5 +1,5 @@
 #!/bin/bash
-if [  -f CPP-SMS-Toolkit-1.0.0.zip ]; then
+if [ -f CPP-SMS-Toolkit-1.0.0.zip ]; then
     continue
 fi
 if [ ! -f CPP-SMS-Toolkit-1.0.0.zip ]; then
@@ -9,6 +9,10 @@ unzip -d SDK CPP-SMS-Toolkit-1.0.0.zip
 fi
 fi
 cd SDK/
+if [ -f /usr/local/lib/libwebsms.so.1.0 ]; then
+    make clean
+    sudo make uninstall
+fi
 make && sudo make install
 cd ../
 sudo make
