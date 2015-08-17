@@ -179,8 +179,8 @@ void sendsms(std::string a1,std::string b1,std::string c1,std::string d1,std::st
     
       }catch (const Exception& e) {
         // Handle exceptions.
-	printf("\a\x1B[39m\n			-=[ ERROR ]=-\n		Message: %s \n		To Number: %d\n		 -=[ \x1B[31m%s\x1B[39m]=- \n",(char *)b1.c_str(),strtol(a1.c_str(),NULL,value),e.What());
-	fprintf(stderr,"\n			-=[ ERROR ]=-\n		Message: %s \n		To Number: %d\n		 -=[ %s]=- \n",(char *)b1.c_str(),strtol(a1.c_str(),NULL,value),e.What());
+	printf("\a\x1B[39m\n			-=[ ERROR ]=-\n		Message: %s \n		To Number: %lu\n		 -=[ \x1B[31m%s\x1B[39m]=- \n",(char *)b1.c_str(),strtol(a1.c_str(),NULL,value),e.What());
+	fprintf(stderr,"\n			-=[ ERROR ]=-\n		Message: %s \n		To Number: %lu\n		 -=[ %s]=- \n",(char *)b1.c_str(),strtol(a1.c_str(),NULL,value),e.What());
 	}
       
 }
