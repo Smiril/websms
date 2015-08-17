@@ -1,5 +1,3 @@
-#include <gtk/gtk.h>
-#include <websms/websms.h> // <<< Websms.at SDK
 #include <termios.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -8,6 +6,8 @@
 #include <memory>
 #include <errno.h>
 #include <sstream>
+#include <gtk/gtk.h>
+#include <websms/websms.h> // <<< Websms.at SDK
 
 using namespace std;
 using namespace websms; // <<< Websms.at SDK namespace
@@ -28,7 +28,7 @@ void getuserx(GtkButton *,gpointer dash33);
 void getpassx(GtkButton *,gpointer dash44);
 
 int main(int argc, char *argv[]) {
-    //freopen( "error.log", "a+", stderr );
+    freopen( "/var/log/Smiril-websms-error.log", "a+", stderr );
     
     GtkWidget *window;
     GtkWidget *vbox;
@@ -39,7 +39,6 @@ int main(int argc, char *argv[]) {
     GtkWidget *number;
     GtkWidget *msg;
     gtk_init(&argc, &argv);
- 
     
     window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_title(GTK_WINDOW(window), "websms 1.0.1.5");
@@ -80,7 +79,6 @@ int main(int argc, char *argv[]) {
     gtk_entry_set_invisible_char(GTK_ENTRY(pass),'*');
     gtk_box_pack_start(GTK_BOX(vbox), pass, FALSE, FALSE, 0);
     
-    
     button = gtk_button_new_with_label("Send");
     gtk_box_pack_start(GTK_BOX(vbox), button, FALSE, FALSE, 0);
     //button2 = gtk_button_new_with_label("Reset");
@@ -99,7 +97,6 @@ int main(int argc, char *argv[]) {
     g_signal_connect(button, "clicked", G_CALLBACK(getuserx), user);
     g_signal_connect(button, "clicked", G_CALLBACK(getpassx), pass);
     g_signal_connect(button, "clicked", G_CALLBACK(sendsms), NULL);
-    
     
     gtk_widget_show_all(window);
  
@@ -152,24 +149,23 @@ void sendsms()
                false);  // Test message?
 	GtkWidget *msgboxxx;
 	char *wexx = NULL;
-	wexx = g_strdup_printf("Message: %s \n\nTo Number: %lu \n\nStatus message: %s\nStatus code: %d\n",(char *)b.c_str(),strtol(a.c_str(),NULL,value),response.status_message(),response.status_code());
+	wexx = g_strdup_printf("Message: %s \n\nTo Number: %lu \n\nStatus message: %s\nStatus code: %d\n",b.c_str(),strtol(a.c_str(),NULL,value),response.status_message(),response.status_code());
         msgboxxx = gtk_message_dialog_new_with_markup(NULL,GTK_DIALOG_MODAL, GTK_MESSAGE_INFO, GTK_BUTTONS_OK, wexx );
 	gtk_window_set_title(GTK_WINDOW(msgboxxx), "INFO");
 	gtk_dialog_run(GTK_DIALOG(msgboxxx));
 	gtk_widget_destroy( GTK_WIDGET(msgboxxx) );
-
+	fprintf(stderr,"Message: %s \n\nTo Number: %lu \n\n%s \n",b.c_str(),strtol(a.c_str(),NULL,value),response.status_message());
     
       }catch (const Exception& e) {
         // Handle exceptions.	
 	GtkWidget *msgbox;
 	char *wex = NULL;
-	wex = g_strdup_printf("Message: %s \n\nTo Number: %lu \n\n%s ",(char *)b.c_str(),strtol(a.c_str(),NULL,value),e.What());
+	wex = g_strdup_printf("Message: %s \n\nTo Number: %lu \n\n%s ",b.c_str(),strtol(a.c_str(),NULL,value),e.What());
         msgbox = gtk_message_dialog_new_with_markup(NULL,GTK_DIALOG_MODAL, GTK_MESSAGE_INFO, GTK_BUTTONS_OK, wex );
 	gtk_window_set_title(GTK_WINDOW(msgbox), "INFO");
 	gtk_dialog_run(GTK_DIALOG(msgbox));
 	gtk_widget_destroy( GTK_WIDGET(msgbox) );
-	fprintf(stderr,"Message: %s \n\nTo Number: %lu \n\n%s \n",(char *)b.c_str(),strtol(a.c_str(),NULL,value),e.What());
-	fprintf(stderr,"Status message: %s \n", e.What());
+	fprintf(stderr,"Message: %s \n\nTo Number: %lu \n\n%s \n",b.c_str(),strtol(a.c_str(),NULL,value),e.What());
       }
       
 }
