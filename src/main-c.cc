@@ -124,6 +124,13 @@ int main(/*int argc, char *argv[]*/) {
 	
 	if(h.c_str() == hh)
 	{
+	  delete(a.c_str());
+	  delete(b.c_str());
+	  delete(c.c_str());
+	  delete(d.c_str());
+	  delete(e.c_str());
+	  delete(f.c_str());
+	  delete(h.c_str());
 	  goto Again;
 	}
 	else{
