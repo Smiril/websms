@@ -1,4 +1,4 @@
-NAME := websms
+NAME := Smiril-websms
 MAJOR := 1
 MINOR := 2
 LIBNAME := $(NAME)
