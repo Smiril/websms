@@ -1,8 +1,9 @@
 NAME := Smiril-websms
 MAJOR := 1
 MINOR := 2
+CODENAME := Devloper-DDOS
 LIBNAME := $(NAME)
-VERSION := $(LIBNAME) $(MAJOR).$(MINOR)
+VERSION := $(LIBNAME) $(MAJOR).$(MINOR) $(CODENAME)
 LIBS := -lwebsms -lcurl -ljansson
 PREFIX := /bin
 CXX := g++
