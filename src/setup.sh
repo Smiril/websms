@@ -5,5 +5,5 @@ unzip -d SDK CPP-SMS-Toolkit-1.0.0.zip
 cd SDK/
 make && sudo make install
 cd ../
-rm -rf SDK CPP-SMS-Toolkit-1.0.0.zip
+rm -rf CPP-SMS-Toolkit-1.0.0.zip
 sudo make
