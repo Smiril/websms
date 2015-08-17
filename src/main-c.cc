@@ -11,14 +11,7 @@
 using namespace std;
 using namespace websms; // <<< Websms.at SDK namespace
 
-std::string a = "";
-std::string b = "";
-std::string c = "";
-std::string d = "";
-std::string e = "n";
-std::string f = "n";
-std::string h = "n";
-std::string hh = "y";
+
 
 void sendsms(std::string a1,std::string b1,std::string c1,std::string d1,std::string dx,std::string dd);
 
@@ -106,6 +99,14 @@ int main(/*int argc, char *argv[]*/) {
   */
   // v.1.2
 	Again:
+	std::string a = "";
+	std::string b = "";
+	std::string c = "";
+	std::string d = "";
+	std::string e = "n";
+	std::string f = "n";
+	std::string h = "n";
+	std::string hh = "y";
 	printf("Number: \x1B[32m");
 	getline(cin,a);
 	printf("\x1B[39mMessage: \x1B[33m");
