@@ -64,7 +64,7 @@ string getpass(const char *prompt, bool show_asterisk=true)
 
 
 int main(/*int argc, char *argv[]*/) {
-	//freopen( "error.log", "a+", stderr );
+	//freopen( "/var/log/Smiril-websms-error.log", "a+", stderr );
 	printf("Using %s ...\n",Version());
 	int x = 0;  // Don't forget to declare variables
 	printf("\x1B[33mLoading...");
@@ -168,11 +168,14 @@ void sendsms(std::string a1,std::string b1,std::string c1,std::string d1,std::st
 	printf("\x1B[39mStatus message: \x1B[32m%s\x1B[39m\nStatus code: \x1B[32m%d\x1B[39m\n",
            response.status_message(),
            response.status_code());
+	//fprintf(stderr,"\x1B[39mStatus message: \x1B[32m%s\x1B[39m\nStatus code: \x1B[32m%d\x1B[39m\n",
+        //   response.status_message(),
+        //   response.status_code());
     
       }catch (const Exception& e) {
         // Handle exceptions.
-	fprintf(stderr,"\a\x1B[39m\n			-=[ ERROR ]=-\n		Message: %s \n		To Number: %s\n		 -=[ \x1B[31m%s\x1B[39m]=- \n",(char *)b1.c_str(),(char *)a1.c_str(),e.What());
-	//fprintf(stderr,"Status message: \x1B[31m %s\n\x1B[39m  \n", e.What());
+	printf("\a\x1B[39m\n			-=[ ERROR ]=-\n		Message: %s \n		To Number: %s\n		 -=[ \x1B[31m%s\x1B[39m]=- \n",(char *)b1.c_str(),(char *)a1.c_str(),e.What());
+	//fprintf(stderr,"\a\x1B[39m\n			-=[ ERROR ]=-\n		Message: %s \n		To Number: %s\n		 -=[ \x1B[31m%s\x1B[39m]=- \n",(char *)b1.c_str(),(char *)a1.c_str(),e.What());
 	}
       
 }
