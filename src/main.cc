@@ -1,17 +1,23 @@
-#include <stdio.h>
 #include <gtk/gtk.h>
 #include <websms/websms.h> // <<< Websms.at SDK
+#include <termios.h>
+#include <unistd.h>
+#include <stdio.h>
 #include <iostream>
 #include <cstring>
 #include <memory>
 #include <errno.h>
+#include <sstream>
 
 using namespace std;
 using namespace websms; // <<< Websms.at SDK namespace
 
 char *text = NULL;
 
-const char *a,*b,*c,*d;
+std::string a = "";
+std::string b = "";
+std::string c = "";
+std::string d = "";
 
 void sendsms();
 void change_text(GtkButton *,gpointer numberx);
@@ -135,9 +141,9 @@ void change_text(GtkButton *,gpointer numberx)
 }  
 
 void sendsms()
-{     
-      SmsClient client(c, d, "https://api.websms.com/json"); // <<< Websms.at specific SDK Client
-      TextMessage message((int64_t)a, UTF8((char *)b)); // <<< Websms.at specific SDK Transmission Format
+{     int value = 0;
+      SmsClient client(c.c_str(), d.c_str(), "https://api.websms.com/json"); // <<< Websms.at specific SDK Client
+      TextMessage message(strtol(a.c_str(),NULL,value), UTF8((char *)b.c_str())); // <<< Websms.at specific SDK Transmission Format
       
       try {
         // Send the message.
@@ -146,7 +152,7 @@ void sendsms()
                false);  // Test message?
 	GtkWidget *msgboxxx;
 	char *wexx = NULL;
-	wexx = g_strdup_printf("Message: %s \n\nTo Number: %s \n\nStatus message: %s\nStatus code: %d\n",(char *)b,(char *)a,response.status_message(),response.status_code());
+	wexx = g_strdup_printf("Message: %s \n\nTo Number: %lu \n\nStatus message: %s\nStatus code: %d\n",(char *)b.c_str(),strtol(a.c_str(),NULL,value),response.status_message(),response.status_code());
         msgboxxx = gtk_message_dialog_new_with_markup(NULL,GTK_DIALOG_MODAL, GTK_MESSAGE_INFO, GTK_BUTTONS_OK, wexx );
 	gtk_window_set_title(GTK_WINDOW(msgboxxx), "INFO");
 	gtk_dialog_run(GTK_DIALOG(msgboxxx));
@@ -157,12 +163,12 @@ void sendsms()
         // Handle exceptions.	
 	GtkWidget *msgbox;
 	char *wex = NULL;
-	wex = g_strdup_printf("Message: %s \n\nTo Number: %s \n\n%s ",(char *)b,(char *)a,e.What());
+	wex = g_strdup_printf("Message: %s \n\nTo Number: %lu \n\n%s ",(char *)b.c_str(),strtol(a.c_str(),NULL,value),e.What());
         msgbox = gtk_message_dialog_new_with_markup(NULL,GTK_DIALOG_MODAL, GTK_MESSAGE_INFO, GTK_BUTTONS_OK, wex );
 	gtk_window_set_title(GTK_WINDOW(msgbox), "INFO");
 	gtk_dialog_run(GTK_DIALOG(msgbox));
 	gtk_widget_destroy( GTK_WIDGET(msgbox) );
-	fprintf(stderr,"Message: %s \n\nTo Number: %s \n\n%s \n",(char *)b,(char *)a,e.What());
+	fprintf(stderr,"Message: %s \n\nTo Number: %lu \n\n%s \n",(char *)b.c_str(),strtol(a.c_str(),NULL,value),e.What());
 	fprintf(stderr,"Status message: %s \n", e.What());
       }
       
