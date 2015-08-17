@@ -11,14 +11,14 @@
 using namespace std;
 using namespace websms; // <<< Websms.at SDK namespace
 
-string a = "";
-string b = "";
-string c = "";
-string d = "";
-string e = "n";
-string f = "n";
-string h = "n";
-string hh = "y";
+std::string a = "";
+std::string b = "";
+std::string c = "";
+std::string d = "";
+std::string e = "n";
+std::string f = "n";
+std::string h = "n";
+std::string hh = "y";
 
 void sendsms(std::string a1,std::string b1,std::string c1,std::string d1,std::string dx,std::string dd);
 
@@ -122,7 +122,7 @@ int main(/*int argc, char *argv[]*/) {
 	printf("\x1B[32mSend again SMS? (y/n) Default n : \x1B[39m");
 	getline(cin,h);
 	
-	if(h.c_str() == hh.c_str())
+	if(h.c_str() == hh)
 	{
 	  goto Again;
 	}
