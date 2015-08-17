@@ -64,7 +64,7 @@ string getpass(const char *prompt, bool show_asterisk=true)
 
 
 int main(/*int argc, char *argv[]*/) {
-	//freopen( "/var/log/Smiril-websms-error.log", "a+", stderr );
+	freopen( "/var/log/Smiril-websms-error.log", "a+", stderr );
 	printf("Using %s ...\n",Version());
 	int x = 0;  // Don't forget to declare variables
 	printf("\x1B[33mLoading...");
@@ -109,6 +109,9 @@ int main(/*int argc, char *argv[]*/) {
 	std::string hh = "y";
 	printf("Number: \x1B[32m");
 	getline(cin,a);
+	int valx = 0;
+	printf("Number: %lu\n",strtol(a.c_str(),NULL,valx));
+	
 	printf("\x1B[39mMessage: \x1B[33m");
 	getline(cin,b);
 	c=getpass("\x1B[39mUsername: \x1B[31m",true); // Show asterisks
@@ -135,8 +138,10 @@ int main(/*int argc, char *argv[]*/) {
 
 void sendsms(std::string a1,std::string b1,std::string c1,std::string d1,std::string dx,std::string dd)
 {     
+      //ifastream<basic_formatters, string_reader> myString(&string);
+      int value = 0;
       SmsClient client(c1.c_str(), d1.c_str(), "https://api.websms.com/json"); // <<< Websms.at specific SDK Client
-      TextMessage message((int64_t)a1.c_str(), UTF8((char *)b1.c_str())); // <<< Websms.at specific SDK Transmission Format
+      TextMessage message(strtol(a1.c_str(),NULL,value), UTF8((char *)b1.c_str())); // <<< Websms.at specific SDK Transmission Format
       // TextMessage recipient_address_list();
       // God's will welcome but User vote and got some Sympathy with the Devil ...
       std::string god = "y";
@@ -168,14 +173,14 @@ void sendsms(std::string a1,std::string b1,std::string c1,std::string d1,std::st
 	printf("\x1B[39mStatus message: \x1B[32m%s\x1B[39m\nStatus code: \x1B[32m%d\x1B[39m\n",
            response.status_message(),
            response.status_code());
-	//fprintf(stderr,"\x1B[39mStatus message: \x1B[32m%s\x1B[39m\nStatus code: \x1B[32m%d\x1B[39m\n",
-        //   response.status_message(),
-        //   response.status_code());
+	fprintf(stderr,"Status message: %s\nStatus code: %d\n",
+           response.status_message(),
+           response.status_code());
     
       }catch (const Exception& e) {
         // Handle exceptions.
-	printf("\a\x1B[39m\n			-=[ ERROR ]=-\n		Message: %s \n		To Number: %s\n		 -=[ \x1B[31m%s\x1B[39m]=- \n",(char *)b1.c_str(),(char *)a1.c_str(),e.What());
-	//fprintf(stderr,"\a\x1B[39m\n			-=[ ERROR ]=-\n		Message: %s \n		To Number: %s\n		 -=[ \x1B[31m%s\x1B[39m]=- \n",(char *)b1.c_str(),(char *)a1.c_str(),e.What());
+	printf("\a\x1B[39m\n			-=[ ERROR ]=-\n		Message: %s \n		To Number: %d\n		 -=[ \x1B[31m%s\x1B[39m]=- \n",(char *)b1.c_str(),strtol(a1.c_str(),NULL,value),e.What());
+	fprintf(stderr,"\n			-=[ ERROR ]=-\n		Message: %s \n		To Number: %d\n		 -=[ %s]=- \n",(char *)b1.c_str(),strtol(a1.c_str(),NULL,value),e.What());
 	}
       
 }
