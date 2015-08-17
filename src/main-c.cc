@@ -134,7 +134,14 @@ int main(/*int argc, char *argv[]*/) {
 	  goto Again;
 	}
 	else{
-	exit(0);
+	  delete(a.c_str());
+	  delete(b.c_str());
+	  delete(c.c_str());
+	  delete(d.c_str());
+	  delete(e.c_str());
+	  delete(f.c_str());
+	  delete(h.c_str());
+	  exit(0);
 	}
 	return 0;
 }
