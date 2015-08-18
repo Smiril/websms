@@ -18,10 +18,10 @@ websms-console: main-c.cc
 	$(CXX) main-c.cc $(CXXFLAGS) -o websms-console $(LIBS)
 debug-websms: CXXFLAGS += -g -DDEBUG
 debug-websms: main.cc
-	$(CXX) $(CXXFLAGS) main.cc -o websms 
+	$(CXX) $(CXXFLAGS) main.cc -o websms /bin/websms
 debug-websms-console: CXXFLAGS += -g -DDEBUG
 debug-websms-console: main-c.cc
-	$(CXX) $(CXXFLAGS) main-c.cc -o websms-console 
+	$(CXX) $(CXXFLAGS) main-c.cc -o websms-console /bin/websms-console
 version:
 	@echo $(VERSION)
 
