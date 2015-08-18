@@ -11,6 +11,14 @@
 using namespace std;
 using namespace websms; // <<< Websms.at SDK namespace
 
+void iam()
+{
+  	  printf(".------..------..------..------..------..------.\n");
+	  printf("|S.--. ||M.--. ||I.--. ||R.--. ||I.--. ||L.--. |\n");
+	  printf("| '--'W|| '--'E|| '--'B|| '--'S|| '--'M|| '--'S|\n");
+	  printf("`------'`------'`------'`------'`------'`------'\n");
+}
+
 void sendsms(std::string a1,std::string b1,std::string c1,std::string d1,std::string dx,std::string dd)
 {     
       //ifastream<basic_formatters, string_reader> myString(&string);
@@ -187,7 +195,11 @@ int main(/*int argc, char *argv[]*/) {
 	getline(cin,a);
 	int valx = 0;
 	printf("Number: %lu\n",strtol(a.c_str(),NULL,valx));
-	
+	if(strtol(a.c_str(),NULL,valx) == 0){
+	  printf("\x1B[31mERROR Number: %lu\x1B[39m\n",strtol(a.c_str(),NULL,valx));
+	  iam();
+	  exit(0);
+	}
 	printf("\x1B[39mMessage: \x1B[33m");
 	getline(cin,b);
 	c=getuser("\x1B[39mUsername: \x1B[31m",true); // Show asterisks
@@ -207,10 +219,7 @@ int main(/*int argc, char *argv[]*/) {
 	  goto Again;
 	}
 	else{
-	  printf(".------..------..------..------..------..------.\n");
-	  printf("|S.--. ||M.--. ||I.--. ||R.--. ||I.--. ||L.--. |\n");
-	  printf("| '--'W|| '--'E|| '--'B|| '--'S|| '--'M|| '--'S|\n");
-	  printf("`------'`------'`------'`------'`------'`------'\n");
+	  iam();
 	  exit(0);
 	}
 	return 0;
