@@ -18,10 +18,10 @@ websms-console: main-c.cc
 	$(CXX) main-c.cc $(CXXFLAGS) -o websms-console $(LIBS)
 debug-websms: CXXFLAGS += -g -DDEBUG
 debug-websms: main.cc
-	$(CXX) $(CXXFLAGS) main.cc -o websms /bin/websms
+	$(CXX) $(CXXFLAGS) main.cc -o websms `pkg-config gtk+-2.0 --cflags --libs`
 debug-websms-console: CXXFLAGS += -g -DDEBUG
 debug-websms-console: main-c.cc
-	$(CXX) $(CXXFLAGS) main-c.cc -o websms-console /bin/websms-console
+	$(CXX) $(CXXFLAGS) main-c.cc -o websms-console 
 version:
 	@echo $(VERSION)
 
@@ -38,4 +38,4 @@ clean:
 	rm -rf websms
 	rm -rf websms-console
 	
-.PHONY: all websms websms-console debug-websms debug-websms-console install uninstall clean version
+.PHONY: all websms websms-console debug-websms debug-websms-console install uninstall clean
