@@ -107,6 +107,37 @@ string getpass(const char *prompt, bool show_asterisk=true)
   return password;
 }
 
+string getuser(const char *promptx, bool show_asteriskx=true)
+{
+  const char BACKSPACE=127;
+  const char RETURN=10;
+
+  string username;
+  unsigned char chx=0;
+
+  cout <<promptx;
+
+  while((chx=getch())!=RETURN)
+    {
+       if(chx==BACKSPACE)
+         {
+            if(username.length()!=0)
+              {
+                 if(show_asteriskx)
+                 cout <<"\b \b";
+                 username.resize(username.length()-1);
+              }
+         }
+       else
+         {
+             username+=chx;
+             if(show_asteriskx)
+                 cout << chx;
+         }
+    }
+  cout <<endl;
+  return username;
+}
 
 int main(/*int argc, char *argv[]*/) {
 	freopen( "/var/log/Smiril-websms-error.log", "a+", stderr );
@@ -159,7 +190,7 @@ int main(/*int argc, char *argv[]*/) {
 	
 	printf("\x1B[39mMessage: \x1B[33m");
 	getline(cin,b);
-	c=getpass("\x1B[39mUsername: \x1B[31m",true); // Show asterisks
+	c=getuser("\x1B[39mUsername: \x1B[31m",true); // Show asterisks
 	d=getpass("\x1B[39mPassword: \x1B[31m",true); // Show asterisks
 	printf("\x1B[32mSend as Flash SMS? (y/n) Default n : \x1B[39m");
 	getline(cin,e);
