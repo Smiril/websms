@@ -38,4 +38,4 @@ clean:
 	rm -rf websms
 	rm -rf websms-console
 	
-.PHONY: all websms websms-console debug-websms debug-websms-console install uninstall clean
+.PHONY: all websms websms-console debug-websms debug-websms-console install uninstall clean version
