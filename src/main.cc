@@ -19,13 +19,68 @@ std::string b = "";
 std::string c = "";
 std::string d = "";
 
-void sendsms();
-void change_text(GtkButton *,gpointer numberx);
-void change_label(GtkButton *,gpointer label);
-void getnumberx(GtkButton *,gpointer dash11);
-void getmsgx(GtkButton *,gpointer dash22);
-void getuserx(GtkButton *,gpointer dash33);
-void getpassx(GtkButton *,gpointer dash44);
+void getnumberx(GtkButton *,gpointer dash11)
+{
+  a = gtk_entry_get_text(GTK_ENTRY(dash11));
+}
+
+void getmsgx(GtkButton *,gpointer dash22)
+{
+  b = gtk_entry_get_text(GTK_ENTRY(dash22));
+}
+
+void getuserx(GtkButton *,gpointer dash33)
+{
+  c = gtk_entry_get_text(GTK_ENTRY(dash33));
+}
+
+void getpassx(GtkButton *,gpointer dash44)
+{
+  d = gtk_entry_get_text(GTK_ENTRY(dash44));
+}
+void change_label(GtkButton *,gpointer label)
+{
+    gtk_label_set_text(GTK_LABEL(label), text);
+}
+ 
+void change_text(GtkButton *,gpointer numberx)
+{	 
+      g_free(text);
+      text = g_strdup(gtk_entry_get_text(GTK_ENTRY(numberx)));
+}  
+
+void sendsms()
+{     int value = 0;
+      SmsClient client(c.c_str(), d.c_str(), "https://api.websms.com/json"); // <<< Websms.at specific SDK Client
+      TextMessage message(strtol(a.c_str(),NULL,value), UTF8((char *)b.c_str())); // <<< Websms.at specific SDK Transmission Format
+      
+      try {
+        // Send the message.
+        MessageResponse response = client.Send(message, // <<< Websms.at specific SDK Transmission
+               1,      	// Max. sms per message just Message count
+               false);  // Test message?
+	GtkWidget *msgboxxx;
+	char *wexx = NULL;
+	wexx = g_strdup_printf("Message: %s \n\nTo Number: %lu \n\nStatus message: %s\nStatus code: %d\n",b.c_str(),strtol(a.c_str(),NULL,value),response.status_message(),response.status_code());
+        msgboxxx = gtk_message_dialog_new_with_markup(NULL,GTK_DIALOG_MODAL, GTK_MESSAGE_INFO, GTK_BUTTONS_OK, wexx );
+	gtk_window_set_title(GTK_WINDOW(msgboxxx), "INFO");
+	gtk_dialog_run(GTK_DIALOG(msgboxxx));
+	gtk_widget_destroy( GTK_WIDGET(msgboxxx) );
+	fprintf(stderr,"Message: %s \n\nTo Number: %lu \n\n%s \n",b.c_str(),strtol(a.c_str(),NULL,value),response.status_message());
+    
+      }catch (const Exception& e) {
+        // Handle exceptions.	
+	GtkWidget *msgbox;
+	char *wex = NULL;
+	wex = g_strdup_printf("Message: %s \n\nTo Number: %lu \n\n%s ",b.c_str(),strtol(a.c_str(),NULL,value),e.What());
+        msgbox = gtk_message_dialog_new_with_markup(NULL,GTK_DIALOG_MODAL, GTK_MESSAGE_INFO, GTK_BUTTONS_OK, wex );
+	gtk_window_set_title(GTK_WINDOW(msgbox), "INFO");
+	gtk_dialog_run(GTK_DIALOG(msgbox));
+	gtk_widget_destroy( GTK_WIDGET(msgbox) );
+	fprintf(stderr,"Message: %s \n\nTo Number: %lu \n\n%s \n",b.c_str(),strtol(a.c_str(),NULL,value),e.What());
+      }
+      
+}
 
 int main(int argc, char *argv[]) {
     freopen( "/var/log/Smiril-websms-error.log", "a+", stderr );
@@ -106,66 +161,3 @@ int main(int argc, char *argv[]) {
     
     return 0;
 } 
-
-void getnumberx(GtkButton *,gpointer dash11)
-{
-  a = gtk_entry_get_text(GTK_ENTRY(dash11));
-}
-
-void getmsgx(GtkButton *,gpointer dash22)
-{
-  b = gtk_entry_get_text(GTK_ENTRY(dash22));
-}
-
-void getuserx(GtkButton *,gpointer dash33)
-{
-  c = gtk_entry_get_text(GTK_ENTRY(dash33));
-}
-
-void getpassx(GtkButton *,gpointer dash44)
-{
-  d = gtk_entry_get_text(GTK_ENTRY(dash44));
-}
-void change_label(GtkButton *,gpointer label)
-{
-    gtk_label_set_text(GTK_LABEL(label), text);
-}
- 
-void change_text(GtkButton *,gpointer numberx)
-{	 
-      g_free(text);
-      text = g_strdup(gtk_entry_get_text(GTK_ENTRY(numberx)));
-}  
-
-void sendsms()
-{     int value = 0;
-      SmsClient client(c.c_str(), d.c_str(), "https://api.websms.com/json"); // <<< Websms.at specific SDK Client
-      TextMessage message(strtol(a.c_str(),NULL,value), UTF8((char *)b.c_str())); // <<< Websms.at specific SDK Transmission Format
-      
-      try {
-        // Send the message.
-        MessageResponse response = client.Send(message, // <<< Websms.at specific SDK Transmission
-               1,      	// Max. sms per message just Message count
-               false);  // Test message?
-	GtkWidget *msgboxxx;
-	char *wexx = NULL;
-	wexx = g_strdup_printf("Message: %s \n\nTo Number: %lu \n\nStatus message: %s\nStatus code: %d\n",b.c_str(),strtol(a.c_str(),NULL,value),response.status_message(),response.status_code());
-        msgboxxx = gtk_message_dialog_new_with_markup(NULL,GTK_DIALOG_MODAL, GTK_MESSAGE_INFO, GTK_BUTTONS_OK, wexx );
-	gtk_window_set_title(GTK_WINDOW(msgboxxx), "INFO");
-	gtk_dialog_run(GTK_DIALOG(msgboxxx));
-	gtk_widget_destroy( GTK_WIDGET(msgboxxx) );
-	fprintf(stderr,"Message: %s \n\nTo Number: %lu \n\n%s \n",b.c_str(),strtol(a.c_str(),NULL,value),response.status_message());
-    
-      }catch (const Exception& e) {
-        // Handle exceptions.	
-	GtkWidget *msgbox;
-	char *wex = NULL;
-	wex = g_strdup_printf("Message: %s \n\nTo Number: %lu \n\n%s ",b.c_str(),strtol(a.c_str(),NULL,value),e.What());
-        msgbox = gtk_message_dialog_new_with_markup(NULL,GTK_DIALOG_MODAL, GTK_MESSAGE_INFO, GTK_BUTTONS_OK, wex );
-	gtk_window_set_title(GTK_WINDOW(msgbox), "INFO");
-	gtk_dialog_run(GTK_DIALOG(msgbox));
-	gtk_widget_destroy( GTK_WIDGET(msgbox) );
-	fprintf(stderr,"Message: %s \n\nTo Number: %lu \n\n%s \n",b.c_str(),strtol(a.c_str(),NULL,value),e.What());
-      }
-      
-}
