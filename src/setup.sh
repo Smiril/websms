@@ -9,17 +9,17 @@ fi
 if [ ! -f SDK ]; then
 unzip -d SDK CPP-SMS-Toolkit-1.0.0.zip
 fi
-if [ ! -f gtk+-3.14.15.tar.xz ]; then
-wget http://ftp.gnome.org/pub/gnome/sources/gtk+/3.14/gtk+-3.14.15.tar.xz
+if [ ! -f gtk+-2.24.28.tar.xz ]; then
+wget http://ftp.gnome.org/pub/gnome/sources/gtk+/2.24/gtk+-2.24.28.tar.xz
 fi
 if [ ! -f GTKLINUX ]; then
-tar -xvf -J --directory=GTKLINUX gtk+-3.14.15.tar.xz
+tar -xvf -J --directory=GTKLINUX gtk+-2.24.28.tar.xz
 fi
-if [ ! -f gtk+-dev_3.6.4-1_win32.zip ]; then
-wget http://win32builder.gnome.org/packages/3.6/gtk+-dev_3.6.4-1_win32.zip
+if [ ! -f gtk+-dev_2.24.10-1_win32.zip ]; then
+wget http://ftp.gnome.org/pub/gnome/binaries/win32/gtk+/2.24/gtk+-dev_2.24.10-1_win32.zip
 fi
 if [ ! -f GTKWIN32 ]; then
-unzip -d GTKWIN32 gtk+-dev_3.6.4-1_win32.zip
+unzip -d GTKWIN32 gtk+-dev_2.24.10-1_win32.zip
 fi
 
 cd SDK/
