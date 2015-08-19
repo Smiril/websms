@@ -30,11 +30,11 @@ fi
 make && sudo make install
 cd ../
 make && sudo make install
-echo "Make Windows Binary?(only OpenSUSE) Do that? [Y,n]"
+echo "Make Windows Binary?(only Unbuntu x64) Do that? [Y,n]"
 read input
 if [[ $input == "Y" || $input == "y" ]]; then
         echo "doing that ..."
-        sh W32_x64_opensuse_build.sh
+        sh W32_x64_unbuntu_build.sh
 else
         echo "don't doing that ..."
 fi
