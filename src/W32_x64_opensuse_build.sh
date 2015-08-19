@@ -29,8 +29,7 @@ wget http://download.opensuse.org/repositories/windows:/mingw:/win32/openSUSE_13
 fi
 
 if [ -f mingw32-cross-breakpad-tools.ymp?base=openSUSE%3A13.2 ]; then
-mv mingw32-cross-breakpad-tools.ymp?base=openSUSE%3A13.2 mingw32-cross-breakpad-tools.ymp
-sudo sh mingw32-cross-breakpad-tools.ymp
+sudo sh mingw32-cross-breakpad-tools.ymp?base=openSUSE%3A13.2
 fi
 if [ -f mingw32-cross-cpp-5.1.0-10.10.x86_64.rpm ]; then
 sudo rpm -iv mingw32-cross-cpp-5.1.0-10.10.x86_64.rpm
