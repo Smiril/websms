@@ -25,9 +25,9 @@ websms: main.cc
 websms-console: main-c.cc	
 	$(CXX) main-c.cc $(CXXFLAGS2) -o websms-console $(LIBS)
 websms-exe-W32: main.cc	
-	$(CXXw32) main.cc $(CXXFLAGS1) -o websms-W32.exe `pkg-config gtk+-2.0 --cflags --libs` $(LIBS)
+	$(CXXw32) main.cc $(CXXFLAGS1) -o websms-W32.exe `pkg-config gtk+-3.0 --cflags --libs` $(LIBS)
 websms-exe-x64: main.cc	
-	$(CXXw64) main.cc $(CXXFLAGS1) -o websms-x64.exe `pkg-config gtk+-2.0 --cflags --libs` $(LIBS)
+	$(CXXw64) main.cc $(CXXFLAGS1) -o websms-x64.exe `pkg-config gtk+-3.0 --cflags --libs` $(LIBS)
 websms-console-exe-W32: main-c.cc	
 	$(CXXW32) main-c.cc $(CXXFLAGS2) -o websms-console-W32.exe $(LIBS)
 websms-console-exe-x64: main-c.cc	
