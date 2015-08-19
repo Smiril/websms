@@ -1,29 +1,36 @@
 NAME := Smiril-websms
-MAJOR := 1
-MINOR := 2
+MAJOR2 := 1
+MINOR2 := 3
+MAJOR1 := 1
+MINOR1 := 2
 CODENAME := Devloper-DDOS
 LIBNAME := $(NAME)
-VERSION := $(LIBNAME) $(MAJOR).$(MINOR) $(CODENAME)
+VERSION1 := $(LIBNAME) $(MAJOR1).$(MINOR1) $(CODENAME)
+VERSION2 := $(LIBNAME) $(MAJOR2).$(MINOR2) $(CODENAME)
 LIBS := -lwebsms -lcurl -ljansson
 PREFIX := /bin
 CXX := g++
-CXXFLAGS := -Wall -Wextra -pedantic \
+CXXFLAGS1 := -Wall -Wextra -pedantic \
         -Wno-variadic-macros \
-        -DVERSION="\"$(VERSION)\""
+        -DVERSION="\"$(VERSION1)\""
+CXXFLAGS2 := -Wall -Wextra -pedantic \
+        -Wno-variadic-macros \
+        -DVERSION="\"$(VERSION2)\""
 
 all: websms websms-console install clean
 websms: main.cc	
-	$(CXX) main.cc $(CXXFLAGS) -o websms `pkg-config gtk+-2.0 --cflags --libs` $(LIBS)
+	$(CXX) main.cc $(CXXFLAGS1) -o websms `pkg-config gtk+-2.0 --cflags --libs` $(LIBS)
 websms-console: main-c.cc	
-	$(CXX) main-c.cc $(CXXFLAGS) -o websms-console $(LIBS)
-debug-websms: CXXFLAGS += -g -DDEBUG
+	$(CXX) main-c.cc $(CXXFLAGS2) -o websms-console $(LIBS)
+debug-websms: CXXFLAGS1 += -g -DDEBUG
 debug-websms: main.cc
-	$(CXX) $(CXXFLAGS) main.cc -o websms /bin/websms `pkg-config gtk+-2.0 --cflags --libs` $(LIBS)
-debug-websms-console: CXXFLAGS += -g -DDEBUG
+	$(CXX) $(CXXFLAGS2) main.cc -o websms /bin/websms `pkg-config gtk+-2.0 --cflags --libs` $(LIBS)
+debug-websms-console: CXXFLAGS2 += -g -DDEBUG
 debug-websms-console: main-c.cc
-	$(CXX) $(CXXFLAGS) main-c.cc -o websms-console /bin/websms-console $(LIBS) 
+	$(CXX) $(CXXFLAGS2) main-c.cc -o websms-console /bin/websms-console $(LIBS) 
 version:
-	@echo $(VERSION)
+	@echo $(VERSION1)
+	@echo $(VERSION2)
 
 install: 
 	mkdir -p $(PREFIX)
