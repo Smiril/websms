@@ -10,8 +10,8 @@ if [ ! -f gtk+-3.14.15.tar.xz ]; then
 wget ftp://ftp.pbone.net/mirror/ftp5.gwdg.de/pub/opensuse/repositories/GNOME:/Apps:/Evince:/Windows:/3.6/openSUSE_12.2/x86_64/mingw32-cross-gcc-c++-4.8.1-11.3.x86_64.rpm
 fi
 
-rpm -iv libmpc2-0.8.2-12.1.6.x86_64.rpm
-rpm -iv mingw32-cross-gcc-c++-4.8.1-11.3.x86_64.rpm
+sudo rpm -iv libmpc2-0.8.2-12.1.6.x86_64.rpm
+sudo rpm -iv mingw32-cross-gcc-c++-4.8.1-11.3.x86_64.rpm
 
 make websms-exe websms-console-exe
 
