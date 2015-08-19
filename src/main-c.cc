@@ -1,17 +1,20 @@
-#include <termios.h>
-#include <unistd.h>
 #include <stdio.h>
 #include <iostream>
 #include <cstring>
 #include <memory>
 #include <errno.h>
 #include <sstream>
-#include <websms/websms.h> // <<< Websms.at SDK
+
 
   #ifdef __linux__
+  #include <termios.h>
+  #include <unistd.h>
+  #include <websms/websms.h> // <<< Websms.at SDK
   #define PATH_MAX        4096    /* # chars in a path name including nul */
   #include <linux/limits.h>
   #elif WIN32
+  #include "SDK/include/websms/websms.h" // <<< Websms.at SDK
+  #include <unistd.h>
   #define MAX_PATH        4096    /* # chars in a path name including nul */
   #include <windows.h>
   #pragma comment(GTKWIN32/lib/gtk-win32-3.0.lib, "gtk-win32-3.0")
