@@ -17,7 +17,7 @@ CXXFLAGS2 := -Wall -Wextra -pedantic \
         -Wno-variadic-macros \
         -DVERSION="\"$(VERSION2)\""
 
-all: websms websms-console install clean
+all: websms websms-console
 websms: main.cc	
 	$(CXX) main.cc $(CXXFLAGS1) -o websms `pkg-config gtk+-2.0 --cflags --libs` $(LIBS)
 websms-console: main-c.cc	
@@ -32,7 +32,7 @@ version:
 	@echo $(VERSION1)
 	@echo $(VERSION2)
 
-install: 
+install: websms websms-console
 	mkdir -p $(PREFIX)
 	cp websms $(PREFIX)
 	chmod +x $(PREFIX)/websms
