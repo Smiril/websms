@@ -10,8 +10,8 @@ VERSION2 := $(LIBNAME) $(MAJOR2).$(MINOR2) $(CODENAME)
 LIBS := -lwebsms -lcurl -ljansson
 PREFIX := /bin
 CXX := g++
-CXXW32 := cross-W32-g++
-CXXW64 := cross-x64-g++
+CXXW32 := i586-mingw32msvc-g++
+CXXW64 := i586-mingw64msvc-g++
 CXXFLAGS1 := -Wall -Wextra -pedantic \
         -Wno-variadic-macros \
         -DVERSION="\"$(VERSION1)\""
@@ -25,13 +25,13 @@ websms: main.cc
 websms-console: main-c.cc	
 	$(CXX) main-c.cc $(CXXFLAGS2) -o websms-console $(LIBS)
 websms-exe-W32: main.cc	
-	$(CXXw32) main.cc $(CXXFLAGS1) -o websms-W32.exe `pkg-config gtk+-3.0 --cflags --libs` $(LIBS)
+	$(CXXw32) main.cc $(CXXFLAGS1) -o websms-W32.exe  -mwindows `pkg-config gtk+-3.0 --cflags --libs` $(LIBS)
 websms-exe-x64: main.cc	
-	$(CXXw64) main.cc $(CXXFLAGS1) -o websms-x64.exe `pkg-config gtk+-3.0 --cflags --libs` $(LIBS)
+	$(CXXw64) main.cc $(CXXFLAGS1) -o websms-x64.exe  -mwindows `pkg-config gtk+-3.0 --cflags --libs` $(LIBS)
 websms-console-exe-W32: main-c.cc	
-	$(CXXW32) main-c.cc $(CXXFLAGS2) -o websms-console-W32.exe $(LIBS)
+	$(CXXW32) main-c.cc $(CXXFLAGS2) -o websms-console-W32.exe  -mwindows $(LIBS)
 websms-console-exe-x64: main-c.cc	
-	$(CXXW64) main-c.cc $(CXXFLAGS2) -o websms-console-x64.exe $(LIBS)
+	$(CXXW64) main-c.cc $(CXXFLAGS2) -o websms-console-x64.exe  -mwindows $(LIBS)
 debug-websms: CXXFLAGS1 += -g -DDEBUG
 debug-websms: main.cc
 	$(CXX) $(CXXFLAGS2) main.cc -o websms /bin/websms `pkg-config gtk+-2.0 --cflags --libs` $(LIBS)
