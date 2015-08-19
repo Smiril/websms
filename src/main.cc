@@ -8,8 +8,16 @@
 #include <sstream>
 #include <gtk/gtk.h>
 #include <websms/websms.h> // <<< Websms.at SDK
-#define PATH_MAX        4096    /* # chars in a path name including nul */
-#include <linux/limits.h>
+
+  #ifdef __linux__
+  #define PATH_MAX        4096    /* # chars in a path name including nul */
+  #include <linux/limits.h>
+  #elif WIN32
+  #define MAX_PATH        4096    /* # chars in a path name including nul */
+  #include <windows.h>
+  #else 
+  #error "OS not supported!"
+  #endif
 
 using namespace std;
 using namespace websms; // <<< Websms.at SDK namespace
@@ -87,7 +95,14 @@ void sendsms()
       int value = 0;
       pch = strtok ((char *)a.c_str(),",");
       // 4096 phonenumbers max per sms sending sequence
+      #ifdef __linux__
       for(int f = 0;f < PATH_MAX;f++){
+      #elif WIN32
+      for(int f = 0;f < MAX_PATH;f++){
+      #else 
+      #error "OS not supported!"
+      #endif
+	
       while (pch != NULL)
       {
       SmsClient client(c.c_str(), d.c_str(), "https://api.websms.com/json"); // <<< Websms.at specific SDK Client
