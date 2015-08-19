@@ -7,6 +7,8 @@
 #include <errno.h>
 #include <sstream>
 #include <websms/websms.h> // <<< Websms.at SDK
+#define PATH_MAX        4096    /* # chars in a path name including nul */
+#include <linux/limits.h>
 
 using namespace std;
 using namespace websms; // <<< Websms.at SDK namespace
@@ -24,8 +26,8 @@ void sendsms(std::string a1,std::string b1,std::string c1,std::string d1,std::st
       const char *pch;
       int value = 0;
       pch = strtok ((char *)a1.c_str(),",");
-      // 99 phonenumbers max per sms sending sequence
-      for(int f = 0;f < 99;f++){
+      // 4096 phonenumbers max per sms sending sequence
+      for(int f = 0;f < PATH_MAX;f++){
       while (pch != NULL)
       {
       SmsClient client(c1.c_str(), d1.c_str(), "https://api.websms.com/json"); // <<< Websms.at specific SDK Client
@@ -222,6 +224,7 @@ int main(/*int argc, char *argv[]*/) {
 	std::string f = "n";
 	std::string h = "n";
 	std::string hh = "y";
+	
 	printf("Number: \x1B[32m");
 	getline(cin,a);
 	int valx = 0;
