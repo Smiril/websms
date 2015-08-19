@@ -14,6 +14,10 @@
   #elif WIN32
   #define MAX_PATH        4096    /* # chars in a path name including nul */
   #include <windows.h>
+  #pragma comment(GTKWIN32/lib/gtk-win32-3.0.lib, "gtk-win32-3.0")
+  #pragma comment(SDK/win32/lib/libcurl.lib, "libcurl")
+  #pragma comment(SDK/win32/lib/jansson.lib, "jansson")
+  #pragma comment(SDK/win32/lib/libwebsms.lib, "websms")
   #else 
   #error "OS not supported!"
   #endif
