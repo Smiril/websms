@@ -42,12 +42,5 @@ if [ -f gtk+-2.24.28 ]; then
 cd ../
 fi
 make && sudo make install
-echo "Make Windows Binary?(only Opensuse x64) Do that? [Y,n]"
-read input
-if [[ $input == "Y" || $input == "y" ]]; then
-        echo "doing that ..."
-        sh W32_x64_opensuse_build.sh
-else
-        echo "don't doing that ..."
-fi
+
 
