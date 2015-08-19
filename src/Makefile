@@ -10,8 +10,8 @@ VERSION2 := $(LIBNAME) $(MAJOR2).$(MINOR2) $(CODENAME)
 LIBS := -lwebsms -lcurl -ljansson
 PREFIX := /bin
 CXX := g++
-CXXW32 := cross-g++
-CXXW64 := cross-g++
+CXXW32 := cross-W32-g++
+CXXW64 := cross-x64-g++
 CXXFLAGS1 := -Wall -Wextra -pedantic \
         -Wno-variadic-macros \
         -DVERSION="\"$(VERSION1)\""
