@@ -21,10 +21,17 @@ void iam()
 
 void sendsms(std::string a1,std::string b1,std::string c1,std::string d1,std::string dx,std::string dd)
 {     
-      //ifastream<basic_formatters, string_reader> myString(&string);
+      const char *pch;
       int value = 0;
+      pch = strtok ((char *)a1.c_str(),",");
+      // 99 phonenumbers max per sms
+      for(int f = 0;f < 99;f++){
+      while (pch != NULL)
+      {
       SmsClient client(c1.c_str(), d1.c_str(), "https://api.websms.com/json"); // <<< Websms.at specific SDK Client
-      TextMessage message(strtol(a1.c_str(),NULL,value), UTF8((char *)b1.c_str())); // <<< Websms.at specific SDK Transmission Format
+      TextMessage message(strtol(pch,NULL,value), UTF8((char *)b1.c_str())); // <<< Websms.at specific SDK Transmission Format
+      printf("Outgoing SMS ... %lu\n",strtol(pch,NULL,value));
+      pch = strtok (NULL, ",");
       // TextMessage recipient_address_list();
       // God's will welcome but User vote and got some Sympathy with the Devil ...
       std::string god = "y";
@@ -46,7 +53,7 @@ void sendsms(std::string a1,std::string b1,std::string c1,std::string d1,std::st
       else{
       printf("\x1B[32mSending as \x1B[33mRegular\x1B[32m SMS with \x1B[33mLow Priority!\x1B[39m\n");
       }
-      
+     
       try {
         // Send the message.
         MessageResponse response = client.Send(message, // <<< Websms.at specific SDK Transmission
@@ -64,8 +71,10 @@ void sendsms(std::string a1,std::string b1,std::string c1,std::string d1,std::st
         // Handle exceptions.
 	printf("\a\x1B[39m\n			-=[ ERROR ]=-\n		Message: %s \n		To Number: %lu\n		 -=[ \x1B[31m%s\x1B[39m]=- \n",(char *)b1.c_str(),strtol(a1.c_str(),NULL,value),e.What());
 	fprintf(stderr,"\n			-=[ ERROR ]=-\n		Message: %s \n		To Number: %lu\n		 -=[ %s]=- \n",(char *)b1.c_str(),strtol(a1.c_str(),NULL,value),e.What());
-	}
-      
+	} 
+	
+      } // while end
+      } // for end
 }
 
 int getch() {
@@ -194,9 +203,9 @@ int main(/*int argc, char *argv[]*/) {
 	printf("Number: \x1B[32m");
 	getline(cin,a);
 	int valx = 0;
-	printf("Number: %lu\n",strtol(a.c_str(),NULL,valx));
+	printf("Number: %s\n",a.c_str());
 	if(strtol(a.c_str(),NULL,valx) == 0){
-	  printf("\x1B[31mERROR Number: %lu\x1B[39m\n",strtol(a.c_str(),NULL,valx));
+	  printf("\x1B[31mERROR Number! \x1B[39m\n");
 	  iam();
 	  exit(0);
 	}
