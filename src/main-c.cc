@@ -198,8 +198,7 @@ int main(/*int argc, char *argv[]*/) {
 	std::string d = "";
 	std::string e = "n";
 	std::string f = "n";
-	std::string h = "n";
-	std::string hh = "y";
+
 	printf("Number: \x1B[32m");
 	getline(cin,a);
 	printf("\x1B[39mMessage: \x1B[33m");
