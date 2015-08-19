@@ -10,8 +10,8 @@ VERSION2 := $(LIBNAME) $(MAJOR2).$(MINOR2) $(CODENAME)
 LIBS := -lwebsms -lcurl -ljansson
 PREFIX := /bin
 CXX := g++
-CXXW32 := i686-w64-mingw32-g++
-CXXW64 := x86_64-w64-mingw32-g++
+CXXW32 := cross-g++
+CXXW64 := cross-g++
 CXXFLAGS1 := -Wall -Wextra -pedantic \
         -Wno-variadic-macros \
         -DVERSION="\"$(VERSION1)\""
@@ -24,11 +24,13 @@ websms: main.cc
 	$(CXX) main.cc $(CXXFLAGS1) -o websms `pkg-config gtk+-2.0 --cflags --libs` $(LIBS)
 websms-console: main-c.cc	
 	$(CXX) main-c.cc $(CXXFLAGS2) -o websms-console $(LIBS)
-websms-exe: main.cc	
+websms-exe-W32: main.cc	
 	$(CXXw32) main.cc $(CXXFLAGS1) -o websms-W32.exe `pkg-config gtk+-2.0 --cflags --libs` $(LIBS)
+websms-exe-x64: main.cc	
 	$(CXXw64) main.cc $(CXXFLAGS1) -o websms-x64.exe `pkg-config gtk+-2.0 --cflags --libs` $(LIBS)
-websms-console-exe: main-c.cc	
+websms-console-exe-W32: main-c.cc	
 	$(CXXW32) main-c.cc $(CXXFLAGS2) -o websms-console-W32.exe $(LIBS)
+websms-console-exe-x64: main-c.cc	
 	$(CXXW64) main-c.cc $(CXXFLAGS2) -o websms-console-x64.exe $(LIBS)
 debug-websms: CXXFLAGS1 += -g -DDEBUG
 debug-websms: main.cc
@@ -57,4 +59,4 @@ clean:
 	rm -rf websms-console-W32.exe
 	rm -rf websms-console-x64.exe
 	
-.PHONY: all websms websms-console debug-websms debug-websms-console install uninstall clean version
+.PHONY: all websms websms-console websms-exe-W32 websms-exe-x64 websms-console-exe-W32 websms-console-exe-x64 debug-websms debug-websms-console install uninstall clean version
