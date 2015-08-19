@@ -13,6 +13,5 @@ fi
 rpm -iv libmpc2-0.8.2-12.1.6.x86_64.rpm
 rpm -iv mingw32-cross-gcc-c++-4.8.1-11.3.x86_64.rpm
 
-cd src/
 make websms-exe websms-console-exe
 
