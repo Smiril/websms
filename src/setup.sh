@@ -29,6 +29,17 @@ if [ -f /usr/local/lib/libwebsms.so.1.0 ]; then
 fi
 make && sudo make install
 cd ../
+if [ -f GTKLINUX ]; then
+cd GTKLINUX/
+fi
+if [ -f gtk+-2.24.28 ]; then
+    cd gtk+-2.24.28
+    sh configure
+    make && sudo make install
+    cd ../
+fi
+
+cd ../
 make && sudo make install
 echo "Make Windows Binary?(only Opensuse x64) Do that? [Y,n]"
 read input
