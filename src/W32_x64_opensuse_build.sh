@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ -f CPP-SMS-Toolkit-1.0.0.zip ]; then
+if [ -f GTKWIN32/ ]; then
     continue
 fi
 
