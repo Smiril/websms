@@ -38,8 +38,9 @@ if [ -f gtk+-2.24.28 ]; then
     make && sudo make install
     cd ../
 fi
-
+if [ -f gtk+-2.24.28 ]; then
 cd ../
+fi
 make && sudo make install
 echo "Make Windows Binary?(only Opensuse x64) Do that? [Y,n]"
 read input
