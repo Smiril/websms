@@ -29,13 +29,5 @@ if [ -f /usr/local/lib/libwebsms.so.1.0 ]; then
 fi
 make && sudo make install
 cd ../
-cd GTKLINUX/
-if [ -f /usr/local/lib/libwebsms.so.1.0 ]; then
-    make clean
-    sudo make uninstall
-fi
-configure --prefix=/opt/gtk
-make && sudo make install
-cd ../
 make && sudo make install
 
