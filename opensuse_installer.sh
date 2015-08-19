@@ -4,3 +4,13 @@ sudo zypper install libjansson4 libjansson4-32bit libjansson-devel curl libcurl4
 cd src/
 sh setup.sh
 cd ../
+echo "Make Windows Binary?(only Opensuse 13.2 x64) Do that? [Y,n]"
+read input
+if [[ $input == "Y" || $input == "y" ]]; then
+        echo "doing that ..."
+        cd src/
+        sh W32_x64_opensuse_build.sh
+        cd ../
+else
+        echo "don't doing that ..."
+fi
