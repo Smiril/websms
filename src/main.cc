@@ -15,7 +15,6 @@
   #elif _WIN32 || _WIN64
   #include <websms/websms.h> // <<< Websms.at SDK
   #include <unistd.h>
-  #define MAX_PATH        4096    /* # chars in a path name including nul */
   #include <windows.h>
   //#pragma comment(GTKWIN32/lib/libgtk-win32-2.0.lib, "libgtk-win32-2.0")
   //#pragma comment(SDK/win32/lib/libcurl.lib, "libcurl")
