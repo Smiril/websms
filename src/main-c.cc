@@ -13,7 +13,7 @@
   #define PATH_MAX        4096    /* # chars in a path name including nul */
   #include <linux/limits.h>
   #elif WIN32
-  #include "SDK/include/websms/websms.h" // <<< Websms.at SDK
+  #include <websms/websms.h> // <<< Websms.at SDK
   #include <unistd.h>
   #define MAX_PATH        4096    /* # chars in a path name including nul */
   #include <windows.h>
@@ -54,7 +54,13 @@ void sendsms(std::string a1,std::string b1,std::string c1,std::string d1,std::st
       while (pch != NULL)
       {
       SmsClient client(c1.c_str(), d1.c_str(), "https://api.websms.com/json"); // <<< Websms.at specific SDK Client
+	#ifdef __linux__
       TextMessage message(strtol(pch,NULL,value), UTF8((char *)b1.c_str())); // <<< Websms.at specific SDK Transmission Format
+        #elif WIN32
+      TextMessage message(strtol(pch,NULL,value), b1.c_str()); // <<< Websms.at specific SDK Transmission Format
+        #else 
+	#error "OS not supported!"
+	#endif
       printf("Outgoing SMS ... %lu\n",strtol(pch,NULL,value));
       
       // TextMessage recipient_address_list();
