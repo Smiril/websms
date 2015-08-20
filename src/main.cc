@@ -13,7 +13,7 @@
   #define PATH_MAX        4096    /* # chars in a path name including nul */
   #include <linux/limits.h>
   #elif WIN32
-  #include "SDK/include/websms/websms.h" // <<< Websms.at SDK
+  #include <websms/websms.h> // <<< Websms.at SDK
   #include <unistd.h>
   #define MAX_PATH        4096    /* # chars in a path name including nul */
   #include <windows.h>
