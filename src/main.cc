@@ -17,10 +17,10 @@
   #include <unistd.h>
   #define MAX_PATH        4096    /* # chars in a path name including nul */
   #include <windows.h>
-  #pragma comment(GTKWIN32/lib/libgtk-win32-2.0.lib, "libgtk-win32-2.0")
-  #pragma comment(SDK/win32/lib/libcurl.lib, "libcurl")
-  #pragma comment(SDK/win32/lib/jansson.lib, "jansson")
-  #pragma comment(SDK/win32/lib/libwebsms.lib, "libwebsms")
+  //#pragma comment(GTKWIN32/lib/libgtk-win32-2.0.lib, "libgtk-win32-2.0")
+  //#pragma comment(SDK/win32/lib/libcurl.lib, "libcurl")
+  //#pragma comment(SDK/win32/lib/jansson.lib, "jansson")
+  //#pragma comment(SDK/win32/lib/libwebsms.lib, "libwebsms")
   #else 
   #error "OS not supported!"
   #endif
