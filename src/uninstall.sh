@@ -18,3 +18,9 @@ rm -rf GTKLINUX/
 rm -rf gtk+-2.24.28.tar.xz
 rm -rf GLIBLINUX/
 rm -rf glib-2.44.0.tar.xz
+rm -rf websms
+rm -rf websms-console
+rm -rf websms-W32.exe
+rm -rf websms-console-W32.exe
+rm -rf websms-x64.exe
+rm -rf websms-console-x64.exe
