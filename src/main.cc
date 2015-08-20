@@ -112,7 +112,13 @@ void sendsms()
       while (pch != NULL)
       {
       SmsClient client(c.c_str(), d.c_str(), "https://api.websms.com/json"); // <<< Websms.at specific SDK Client
+      #ifdef __linux__
       TextMessage message(strtol(pch,NULL,value), UTF8((char *)b.c_str())); // <<< Websms.at specific SDK Transmission Format
+        #elif WIN32
+      TextMessage message(strtol(pch,NULL,value), b.c_str()); // <<< Websms.at specific SDK Transmission Format
+        #else 
+	#error "OS not supported!"
+	#endif
       printf("Outgoing SMS ... %lu\n",strtol(pch,NULL,value));
       
       // TextMessage recipient_address_list();
