@@ -13,13 +13,20 @@
   #include <websms/websms.h> // <<< Websms.at SDK
   #define PATH_MAX        4096    /* # chars in a path name including nul */
   #include <linux/limits.h>
-  #elif _WIN32 || _WIN64
+  #elif _WIN32
   #include <websms/websms.h> // <<< Websms.at SDK
   #include <unistd.h>
   #include <windows.h>
   //#pragma comment(SDK/win32/lib/libcurl.lib, "libcurl")
   //#pragma comment(SDK/win32/lib/jansson.lib, "jansson")
   //#pragma comment(SDK/win32/lib/libwebsms.lib, "libwebsms")
+  #elif _WIN64
+  #include <websms/websms.h> // <<< Websms.at SDK
+  #include <unistd.h>
+  #include <windows.h>
+  //#pragma comment(SDK/win64/lib/libcurl.lib, "libcurl")
+  //#pragma comment(SDK/win64/lib/jansson.lib, "jansson")
+  //#pragma comment(SDK/win64/lib/libwebsms.lib, "libwebsms")
   #else 
   #error "OS not supported!"
   #endif
