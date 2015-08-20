@@ -26,15 +26,15 @@ all: websms websms-console
 websms: main.cc	
 	$(CXX) main.cc -I GTKLINUX/gtk+-2.24.28 -I SDK/include -I GLIBLINUX/glib-2.44.0 $(CXXFLAGS1) -o websms `pkg-config gtk+-2.0 --cflags --libs` $(LIBS)
 websms-exe-W32: main.cc	
-	$(CX1) main.cc -I GTKWIN32/include/gtk-2.0 -I SDK/include -I GLIBWIN32/include/glib-2.0 -I GTKWIN32/lib -I GLIBWIN32/lib $(CXXFLAGS1) -o websms-W32.exe -m32 -mwindows `pkg-config gtk+-2.0 --cflags --libs` $(LIBX)
+	$(CX1) main.cc -I SDK/win32/lib -I GTKWIN32/include/gtk-2.0 -I SDK/include -I GLIBWIN32/include/glib-2.0 -I GTKWIN32/lib -I GLIBWIN32/lib $(CXXFLAGS1) -o websms-W32.exe -m32 -mwindows `pkg-config gtk+-2.0 --cflags --libs` $(LIBX)
 websms-exe-x64: main.cc	
-	$(CX2) main.cc -I GTKWIN64/include/gtk-3.0 -I SDK/include -I GLIBWIN64/include/glib-2.0 -I GTKWIN64/lib -I GLIBWIN64/lib $(CXXFLAGS1) -o websms-x64.exe -m64 -mwindows $(LIBC)
+	$(CX2) main.cc -I SDK/win32/lib -I GTKWIN64/include/gtk-3.0 -I SDK/include -I GLIBWIN64/include/glib-2.0 -I GTKWIN64/lib -I GLIBWIN64/lib $(CXXFLAGS1) -o websms-x64.exe -m64 -mwindows $(LIBC)
 websms-console: main-c.cc	
 	$(CXX) main-c.cc -I SDK/include $(CXXFLAGS2) -o websms-console $(LIBS)
 websms-console-exe-W32: main-c.cc	
-	$(CX1) main-c.cc -I SDK/include $(CXXFLAGS2) -o websms-console-W32.exe -m32 -mwindows $(LIBD)
+	$(CX1) main-c.cc -I SDK/win32/lib -I SDK/include $(CXXFLAGS2) -o websms-console-W32.exe -m32 -mwindows $(LIBD)
 websms-console-exe-x64: main-c.cc	
-	$(CX2) main-c.cc -I SDK/include $(CXXFLAGS2) -o websms-console-x64.exe -m64 -mwindows $(LIBD)
+	$(CX2) main-c.cc -I SDK/win32/lib -I SDK/include $(CXXFLAGS2) -o websms-console-x64.exe -m64 -mwindows $(LIBD)
 debug-websms: CXXFLAGS1 += -g -DDEBUG
 debug-websms: main.cc
 	$(CXX) $(CXXFLAGS2) main.cc -o websms /bin/websms `pkg-config gtk+-2.0 --cflags --libs` $(LIBS)
