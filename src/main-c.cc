@@ -12,7 +12,7 @@
   #include <websms/websms.h> // <<< Websms.at SDK
   #define PATH_MAX        4096    /* # chars in a path name including nul */
   #include <linux/limits.h>
-  #elif WIN32
+  #elif _WIN32 || _WIN64
   #include <websms/websms.h> // <<< Websms.at SDK
   #include <unistd.h>
   #define MAX_PATH        4096    /* # chars in a path name including nul */
@@ -56,7 +56,7 @@ void sendsms(std::string a1,std::string b1,std::string c1,std::string d1,std::st
       SmsClient client(c1.c_str(), d1.c_str(), "https://api.websms.com/json"); // <<< Websms.at specific SDK Client
 	#ifdef __linux__
       TextMessage message(strtol(pch,NULL,value), UTF8((char *)b1.c_str())); // <<< Websms.at specific SDK Transmission Format
-        #elif WIN32
+        #elif _WIN32 || _WIN64
       TextMessage message(strtol(pch,NULL,value), b1.c_str()); // <<< Websms.at specific SDK Transmission Format
         #else 
 	#error "OS not supported!"
@@ -123,7 +123,7 @@ int getch() {
     tcsetattr(STDIN_FILENO, TCSANOW, &t_old);
     return ch;
 }
-        #elif WIN32
+        #elif _WIN32 || _WIN64
 int getch() {
     int ch;
     //struct termios t_old, t_new;
