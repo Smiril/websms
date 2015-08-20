@@ -107,7 +107,8 @@ void sendsms(std::string a1,std::string b1,std::string c1,std::string d1,std::st
       } // while end
       } // for end
 }
-
+	
+	#ifdef __linux__
 int getch() {
     int ch;
     struct termios t_old, t_new;
@@ -122,6 +123,24 @@ int getch() {
     tcsetattr(STDIN_FILENO, TCSANOW, &t_old);
     return ch;
 }
+        #elif WIN32
+int getch() {
+    int ch;
+    //struct termios t_old, t_new;
+
+    //tcgetattr(STDIN_FILENO, &t_old);
+    //t_new = t_old;
+    //t_new.c_lflag &= ~(ICANON | ECHO);
+    //tcsetattr(STDIN_FILENO, TCSANOW, &t_new);
+
+    ch = getchar();
+
+    //tcsetattr(STDIN_FILENO, TCSANOW, &t_old);
+    return ch;
+}
+        #else 
+	#error "OS not supported!"
+	#endif
 
 string getpass(const char *prompt, bool show_asterisk=true)
 {
