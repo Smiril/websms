@@ -7,7 +7,7 @@ CODENAME := Rasputin
 LIBNAME := $(NAME)
 VERSION1 := $(LIBNAME) $(MAJOR1).$(MINOR1) $(CODENAME)
 VERSION2 := $(LIBNAME) $(MAJOR2).$(MINOR2) $(CODENAME)
-LIBS := -lwebsms -lcurl -ljansson -lgtk-2.0
+LIBS := -lwebsms -lcurl -ljansson
 LIBX := -llibwebsms -ljansson -llibcurl -lgtk-win32-2.0
 LIBC := -llibwebsms -ljansson -llibcurl -lgtk-win32-3.0
 LIBD := -llibwebsms -ljansson -llibcurl 
@@ -30,7 +30,7 @@ websms-exe-W32: main.cc
 websms-exe-x64: main.cc	
 	$(CX2) main.cc -I GTKWIN64/include/gtk-3.0 -I SDK/include -I GLIBWIN64/include/glib-2.0 -I GTKWIN64/lib -I GLIBWIN64/lib $(CXXFLAGS1) -o websms-x64.exe -m64 -mwindows `pkg-config gtk+-3.0 --cflags --libs` $(LIBC)
 websms-console: main-c.cc	
-	$(CXX) main-c.cc -I SDK/include $(CXXFLAGS2) -o websms-console $(LIBD)
+	$(CXX) main-c.cc -I SDK/include $(CXXFLAGS2) -o websms-console $(LIBS)
 websms-console-exe-W32: main-c.cc	
 	$(CX1) main-c.cc -I SDK/include $(CXXFLAGS2) -o websms-console-W32.exe -m32 -mwindows $(LIBD)
 websms-console-exe-x64: main-c.cc	
