@@ -37,10 +37,10 @@ websms-console-exe-x64: main-c.cc
 	$(CX2) main-c.cc -I SDK/win32/lib -I SDK/include $(CXXFLAGS2) -o websms-console-x64.exe -m64 -mwindows $(LIBD)
 debug-websms: CXXFLAGS1 += -g -DDEBUG
 debug-websms: main.cc
-	$(CXX) $(CXXFLAGS2) main.cc -o websms /bin/websms `pkg-config gtk+-2.0 --cflags --libs` $(LIBS)
+	$(CXX) $(CXXFLAGS2) main.cc -o debug-websms websms `pkg-config gtk+-2.0 --cflags --libs` $(LIBS)
 debug-websms-console: CXXFLAGS2 += -g -DDEBUG
 debug-websms-console: main-c.cc
-	$(CXX) $(CXXFLAGS2) main-c.cc -o websms-console /bin/websms-console $(LIBS) 
+	$(CXX) $(CXXFLAGS2) main-c.cc -o debug-websms-console websms-console $(LIBS) 
 version:
 	@echo $(VERSION1)
 	@echo $(VERSION2)
