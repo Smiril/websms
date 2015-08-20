@@ -23,9 +23,9 @@ CXXFLAGS2 := -Wall -Wextra -pedantic \
 
 all: websms websms-console
 websms: main.cc	
-	$(CXX) main.cc $(CXXFLAGS1) -o websms `pkg-config gtk+-2.0 --cflags --libs` $(LIBS)
+	$(CXX) main.cc -I GTKLINUX/gtk+-2.24.28 -I SDK/include -I GLIBLINUX/glib-2.44.0 $(CXXFLAGS1) -o websms `pkg-config gtk+-2.0 --cflags --libs` $(LIBS)
 websms-console: main-c.cc	
-	$(CXX) main-c.cc $(CXXFLAGS2) -o websms-console $(LIBS)
+	$(CXX) main-c.cc -I SDK/include $(CXXFLAGS2) -o websms-console $(LIBS)
 websms-exe-W32: main.cc	
 	$(CX1) main.cc -I GTKWIN32/include/gtk-2.0 -I SDK/include -I GLIBWIN32/include/glib-2.0 $(CXXFLAGS1) -o websms-W32.exe -m32 -mwindows `pkg-config gtk+-2.0 --cflags --libs` $(LIBX)
 websms-exe-x64: main.cc	
