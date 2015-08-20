@@ -8,8 +8,9 @@ LIBNAME := $(NAME)
 VERSION1 := $(LIBNAME) $(MAJOR1).$(MINOR1) $(CODENAME)
 VERSION2 := $(LIBNAME) $(MAJOR2).$(MINOR2) $(CODENAME)
 LIBS := -lwebsms -lcurl -ljansson
-LIBX := SDK/win32/lib/libwebsms.lib SDK/win32/lib/jansson.lib SDK/win32/lib/libcurl.lib GTKWIN32/lib/gtk-win32-2.0.lib
-LIBC := SDK/win32/lib/libwebsms.lib SDK/win32/lib/jansson.lib SDK/win32/lib/libcurl.lib 
+LIBX := -llibwebsms -ljansson -llibcurl -lgtk-win32-2.0
+LIBC := -llibwebsms -ljansson -llibcurl -lgtk-win32-3.0
+LIBD := -llibwebsms -ljansson -llibcurl 
 PREFIX := /bin
 CXX := g++
 CX1 := i686-w64-mingw32-g++
@@ -27,9 +28,9 @@ websms: main.cc
 websms-console: main-c.cc	
 	$(CXX) main-c.cc -I SDK/include $(CXXFLAGS2) -o websms-console $(LIBS)
 websms-exe-W32: main.cc	
-	$(CX1) main.cc -I GTKWIN32/include/gtk-2.0 -I SDK/include -I GLIBWIN32/include/glib-2.0 $(CXXFLAGS1) -o websms-W32.exe -m32 -mwindows `pkg-config gtk+-2.0 --cflags --libs` $(LIBX)
+	$(CX1) main.cc -I GTKWIN32/include/gtk-2.0 -I SDK/include -I GLIBWIN32/include/glib-2.0 -I GTKWIN32/lib -I GLIBWIN32/lib $(CXXFLAGS1) -o websms-W32.exe -m32 -mwindows `pkg-config gtk+-2.0 --cflags --libs` $(LIBX)
 websms-exe-x64: main.cc	
-	$(CX2) main.cc -I GTKWIN64/include/gtk-3.0 -I SDK/include -I GLIBWIN64/include/glib-2.0 $(CXXFLAGS1) -o websms-x64.exe -m64 -mwindows `pkg-config gtk+-3.0 --cflags --libs` $(LIBX)
+	$(CX2) main.cc -I GTKWIN64/include/gtk-3.0 -I SDK/include -I GLIBWIN64/include/glib-2.0 -I GTKWIN64/lib -I GLIBWIN64/lib $(CXXFLAGS1) -o websms-x64.exe -m64 -mwindows `pkg-config gtk+-3.0 --cflags --libs` $(LIBX)
 websms-console-exe-W32: main-c.cc	
 	$(CX1) main-c.cc -I SDK/include $(CXXFLAGS2) -o websms-console-W32.exe -m32 -mwindows $(LIBC)
 websms-console-exe-x64: main-c.cc	
