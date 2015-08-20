@@ -8,8 +8,8 @@ LIBNAME := $(NAME)
 VERSION1 := $(LIBNAME) $(MAJOR1).$(MINOR1) $(CODENAME)
 VERSION2 := $(LIBNAME) $(MAJOR2).$(MINOR2) $(CODENAME)
 LIBS := -lwebsms -lcurl -ljansson
-LIBX := -llibwebsms -ljansson -llibcurl -lgtk-win32-2.0
-LIBC := -llibwebsms -ljansson -llibcurl -lgtk-win32-3.0
+LIBX := -llibwebsms -ljansson -llibcurl 
+LIBC := -llibwebsms -ljansson -llibcurl 
 LIBD := -llibwebsms -ljansson -llibcurl 
 PREFIX := /bin
 CXX := g++
@@ -24,7 +24,7 @@ CXXFLAGS2 := -Wall -Wextra -pedantic \
 
 all: websms websms-console
 websms: main.cc	
-	$(CXX) main.cc -I SDK/include $(CXXFLAGS1) -o websms `pkg-config gtk+-2.0 --cflags --libs` $(LIBS)
+	$(CXX) main.cc -I GTKLINUX/gtk+-2.24.28 -I SDK/include -I GLIBLINUX/glib-2.44.0 $(CXXFLAGS1) -o websms `pkg-config gtk+-2.0 --cflags --libs` $(LIBS)
 websms-exe-W32: main.cc	
 	$(CX1) main.cc -I GTKWIN32/include/gtk-2.0 -I SDK/include -I GLIBWIN32/include/glib-2.0 -I GTKWIN32/lib -I GLIBWIN32/lib $(CXXFLAGS1) -o websms-W32.exe -m32 -mwindows `pkg-config gtk+-2.0 --cflags --libs` $(LIBX)
 websms-exe-x64: main.cc	
