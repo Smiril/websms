@@ -52,6 +52,18 @@ if [ -f /usr/local/lib/libwebsms.so.1.0 ]; then
 fi
 make && sudo make install
 cd ../
+if [ -f GLIBLINUX ]; then
+cd GLIBLINUX/
+fi
+if [ -f glib-2.44.0 ]; then
+    cd glib-2.44.0
+    sh ./configure
+    make && sudo make install
+    cd ../
+fi
+if [ -f glib-2.44.0 ]; then
+cd ../
+fi
 if [ -f GTKLINUX ]; then
 cd GTKLINUX/
 fi
