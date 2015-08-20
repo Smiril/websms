@@ -21,13 +21,18 @@ fi
 if [ ! -f gtk+-dev_2.24.10-1_win32.zip ]; then
 wget http://ftp.gnome.org/pub/gnome/binaries/win32/gtk+/2.24/gtk+-dev_2.24.10-1_win32.zip
 fi
+if [ ! -f glib-2.44.0.tar.xz ]; then
+wget http://ftp.gnome.org/pub/gnome/sources/glib/2.44/glib-2.44.0.tar.xz
+fi
 if [ ! -f GTKWIN32 ]; then
 unzip -d GTKWIN32 gtk+-dev_2.24.10-1_win32.zip
 fi
 if [ ! -f GLIBWIN32 ]; then
 unzip -d GLIBWIN32 glib-dev_2.34.3-1_win32.zip
 fi
-
+if [ ! -f GLIBLINUX ]; then
+tar -xvf -J --directory=GLIBLINUX glib-2.44.0.tar.xz
+fi
 cd SDK/
 if [ -f /usr/local/lib/libwebsms.so.1.0 ]; then
     make clean
