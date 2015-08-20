@@ -12,7 +12,7 @@
   #include <websms/websms.h> // <<< Websms.at SDK
   #define PATH_MAX        4096    /* # chars in a path name including nul */
   #include <linux/limits.h>
-  #elif WIN32
+  #elif _WIN32 || _WIN64
   #include <websms/websms.h> // <<< Websms.at SDK
   #include <unistd.h>
   #define MAX_PATH        4096    /* # chars in a path name including nul */
@@ -103,7 +103,7 @@ void sendsms()
       // 4096 phonenumbers max per sms sending sequence
       #ifdef __linux__
       for(int f = 0;f < PATH_MAX;f++){
-      #elif WIN32
+      #elif _WIN32 || _WIN64
       for(int f = 0;f < MAX_PATH;f++){
       #else 
       #error "OS not supported!"
@@ -114,7 +114,7 @@ void sendsms()
       SmsClient client(c.c_str(), d.c_str(), "https://api.websms.com/json"); // <<< Websms.at specific SDK Client
       #ifdef __linux__
       TextMessage message(strtol(pch,NULL,value), UTF8((char *)b.c_str())); // <<< Websms.at specific SDK Transmission Format
-        #elif WIN32
+        #elif _WIN32 || _WIN64
       TextMessage message(strtol(pch,NULL,value), b.c_str()); // <<< Websms.at specific SDK Transmission Format
         #else 
 	#error "OS not supported!"
