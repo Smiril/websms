@@ -17,3 +17,7 @@ make && sudo make install
 cd ../
 make debug-websms
 make debug-websms-console
+make debug-websms-exe-W32
+make debug-websms-console-exe-W32
+make debug-websms-exe-x64
+make debug-websms-console-exe-x64
