@@ -24,7 +24,7 @@ CXXFLAGS2 := -Wall -Wextra -pedantic \
 
 all: websms websms-console
 websms: main.cc	
-	$(CXX) main.cc -I GTKLINUX/gtk+-2.24.28 -I SDK/include -I GLIBLINUX/glib-2.44.0 $(CXXFLAGS1) -o websms `pkg-config gtk+-2.0 --cflags --libs` $(LIBS)
+	$(CXX) main.cc -I SDK/include $(CXXFLAGS1) -o websms `pkg-config gtk+-2.0 --cflags --libs` $(LIBS)
 websms-exe-W32: main.cc	
 	$(CX1) main.cc -I SDK/win32/lib -I GTKWIN32/include/gtk-2.0 -I SDK/include -I GLIBWIN32/include/glib-2.0 -I GTKWIN32/lib -I GLIBWIN32/lib $(CXXFLAGS1) -o websms-W32.exe -m32 -mwindows `pkg-config gtk+-2.0 --cflags --libs` $(LIBX)
 websms-exe-x64: main.cc	
@@ -38,9 +38,21 @@ websms-console-exe-x64: main-c.cc
 debug-websms: CXXFLAGS1 += -g -DDEBUG
 debug-websms: main.cc
 	$(CXX) $(CXXFLAGS2) main.cc -o debug-websms websms `pkg-config gtk+-2.0 --cflags --libs` $(LIBS)
+debug-websms-exe-W32 : CXXFLAGS1 += -g -DDEBUG
+debug-websms-exe-W32: main.cc	
+	$(CX1) main.cc -I SDK/win32/lib -I GTKWIN32/include/gtk-2.0 -I SDK/include -I GLIBWIN32/include/glib-2.0 -I GTKWIN32/lib -I GLIBWIN32/lib $(CXXFLAGS1) -o debug-websms-W32.exe websms-W32.exe -m32 -mwindows `pkg-config gtk+-2.0 --cflags --libs` $(LIBX)
+debug-websms-exe-x64 : CXXFLAGS1 += -g -DDEBUG
+debug-websms-exe-x64: main.cc	
+	$(CX1) main.cc -I SDK/win64/lib -I GTKWIN64/include/gtk-3.0 -I SDK/include -I GLIBWIN64/include/glib-2.0 -I GTKWIN64/lib -I GLIBWIN64/lib $(CXXFLAGS1) -o debug-websms-x64.exe websms-x64.exe -m64 -mwindows $(LIBC)
 debug-websms-console: CXXFLAGS2 += -g -DDEBUG
 debug-websms-console: main-c.cc
 	$(CXX) $(CXXFLAGS2) main-c.cc -o debug-websms-console websms-console $(LIBS) 
+debug-websms-console-exe-W32: CXXFLAGS2 += -g -DDEBUG
+debug-websms-console-exe-W32: main-c.cc	
+	$(CX1) main-c.cc -I SDK/win32/lib -I SDK/include $(CXXFLAGS2) -o debug-websms-console-W32.exe websms-console-W32.exe -m32 -mwindows $(LIBD)
+debug-websms-console-exe-x64: CXXFLAGS2 += -g -DDEBUG
+debug-websms-console-exe-x64: main-c.cc	
+	$(CX1) main-c.cc -I SDK/win64/lib -I SDK/include $(CXXFLAGS2) -o debug-websms-console-x64.exe websms-console-x64.exe -m64 -mwindows $(LIBD)
 version:
 	@echo $(VERSION1)
 	@echo $(VERSION2)
@@ -62,4 +74,4 @@ clean:
 	rm -rf websms-console-W32.exe
 	rm -rf websms-console-x64.exe
 	
-.PHONY: all websms websms-console websms-exe-W32 websms-exe-x64 websms-console-exe-W32 websms-console-exe-x64 debug-websms debug-websms-console install uninstall clean version
+.PHONY: all websms websms-console websms-exe-W32 websms-exe-x64 websms-console-exe-W32 websms-console-exe-x64 debug-websms debug-websms-exe-W32 debug-websms-exe-x64 debug-websms-console debug-websms-console-exe-W32 debug-websms-console-exe-x64 install uninstall clean version
