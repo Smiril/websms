@@ -1,12 +1,13 @@
 NAME := Smiril-websms
 MAJOR2 := 1
-MINOR2 := 3
+MINOR2 := 4
 MAJOR1 := 1
 MINOR1 := 3
-CODENAME := Rasputin
+CODENAME1 := Rasputin
+CODENAME2 := TED - The Enemy Dail
 LIBNAME := $(NAME)
-VERSION1 := $(LIBNAME) $(MAJOR1).$(MINOR1) $(CODENAME)
-VERSION2 := $(LIBNAME) $(MAJOR2).$(MINOR2) $(CODENAME)
+VERSION1 := $(LIBNAME) $(MAJOR1).$(MINOR1) $(CODENAME1)
+VERSION2 := $(LIBNAME) $(MAJOR2).$(MINOR2) $(CODENAME2)
 LIBS := -lwebsms -lcurl -ljansson
 LIBX := -llibwebsms -ljansson -llibcurl 
 LIBC := -llibwebsms -ljansson -llibcurl 
@@ -21,6 +22,8 @@ CXXFLAGS1 := -Wall -Wextra -pedantic \
 CXXFLAGS2 := -Wall -Wextra -pedantic \
         -Wno-variadic-macros \
         -DVERSION="\"$(VERSION2)\""
+
+.PHONY: all websms websms-console websms-exe-W32 websms-exe-x64 websms-console-exe-W32 websms-console-exe-x64 debug-websms debug-websms-exe-W32 debug-websms-exe-x64 debug-websms-console debug-websms-console-exe-W32 debug-websms-console-exe-x64 install uninstall clean version
 
 all: websms websms-console
 websms: main.cc	
@@ -74,4 +77,3 @@ clean:
 	rm -rf websms-console-W32.exe
 	rm -rf websms-console-x64.exe
 	
-.PHONY: all websms websms-console websms-exe-W32 websms-exe-x64 websms-console-exe-W32 websms-console-exe-x64 debug-websms debug-websms-exe-W32 debug-websms-exe-x64 debug-websms-console debug-websms-console-exe-W32 debug-websms-console-exe-x64 install uninstall clean version
