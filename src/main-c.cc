@@ -128,7 +128,7 @@ int getch() {
 
     tcsetattr(STDIN_FILENO, TCSANOW, &t_old);
     return ch;
-}^
+}
         #elif _WIN32 || _WIN64
 int getch() {
     int ch;
