@@ -51,7 +51,7 @@ void sendsms(std::string a1,std::string b1,std::string c1,std::string d1,std::st
       // 4096 phonenumbers max per sms sending sequence
       #ifdef __linux__
       for(int f = 0;f < PATH_MAX;f++){
-      #elif WIN32
+      #elif _WIN32 || _WIN64
       for(int f = 0;f < MAX_PATH;f++){
       #else 
       #error "OS not supported!"
