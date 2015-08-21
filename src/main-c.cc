@@ -28,7 +28,7 @@
   //#pragma comment(SDK/win64/lib/jansson.lib, "jansson")
   //#pragma comment(SDK/win64/lib/libwebsms.lib, "libwebsms")
   #else 
-  #error "OS not supported!"
+  #error "SDK not support your OS!"
   #endif
   
 using namespace std;
@@ -133,13 +133,13 @@ int getch() {
 int getch() {
     int ch;
     //struct termios t_old, t_new;
-
+    std::string set = "";
     //tcgetattr(STDIN_FILENO, &t_old);
     //t_new = t_old;
     //t_new.c_lflag &= ~(ICANON | ECHO);
     //tcsetattr(STDIN_FILENO, TCSANOW, &t_new);
-
-    ch = getchar();
+    ch = cin >> set;
+    //ch = getchar();
 
     //tcsetattr(STDIN_FILENO, TCSANOW, &t_old);
     return ch;
