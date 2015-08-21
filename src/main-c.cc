@@ -128,18 +128,18 @@ int getch() {
 
     tcsetattr(STDIN_FILENO, TCSANOW, &t_old);
     return ch;
-}
+}^
         #elif _WIN32 || _WIN64
 int getch() {
     int ch;
     //struct termios t_old, t_new;
-    std::string set = "";
+    //std::string set = "";
     //tcgetattr(STDIN_FILENO, &t_old);
     //t_new = t_old;
     //t_new.c_lflag &= ~(ICANON | ECHO);
     //tcsetattr(STDIN_FILENO, TCSANOW, &t_new);
-    ch = cin >> set;
-    //ch = getchar();
+    //ch = cin >> set;
+    ch = getchar();
 
     //tcsetattr(STDIN_FILENO, TCSANOW, &t_old);
     return ch;
