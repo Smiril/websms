@@ -27,7 +27,7 @@
   //#pragma comment(SDK/win64/lib/jansson.lib, "jansson")
   //#pragma comment(SDK/win64/lib/libwebsms.lib, "libwebsms")
   #else 
-  #error "OS not supported!"
+  #error "SDK not support your OS!"
   #endif
 
 using namespace std;
@@ -41,6 +41,10 @@ std::string c = "";
 std::string d = "";
 std::string dx = "";
 std::string dd = "";
+std::string dx1 = "y";
+std::string dd1 = "y";
+std::string dx2 = "n";
+std::string dd2 = "n";
 std::string aa = "Send as Flash SMS";
 std::string bb = "Send with Priority";
 
@@ -60,14 +64,18 @@ GtkWidget *CreateCheckBox (GtkWidget *box, char *szLabel)
     return (check);
 }
 
-void flashsms(GtkWidget *, gpointer *)
-{
-  dx = (char *)"y";
+void flashsms(GtkWidget *, gpointer *datac){
+   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(datac)))
+       dx = dx1;
+   else
+    dx = dx2;
 }
 
-void prioritysms(GtkWidget *, gpointer *)
-{
-  dd = (char *)"y";
+void prioritysms(GtkWidget *, gpointer *datad){
+   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(datad)))
+       dd = dd1;
+   else
+    dd = dd2;
 }
 
 void getnumberx(GtkButton *,gpointer dash11)
@@ -210,7 +218,7 @@ int main(int argc, char *argv[]) {
     label1 = gtk_label_new("Number");
     gtk_box_pack_start(GTK_BOX(vbox), label1, FALSE, FALSE, 0);
     number = gtk_entry_new();
-    gtk_entry_set_max_length(GTK_ENTRY(number),1024);
+    gtk_entry_set_max_length(GTK_ENTRY(number),4096);
     gtk_box_pack_start(GTK_BOX(vbox), number, FALSE, FALSE, 0);
     
     label2 = gtk_label_new("Text Message");
@@ -235,12 +243,14 @@ int main(int argc, char *argv[]) {
     check1 = CreateCheckBox (vbox, (char *)aa.c_str());
     gtk_box_pack_start(GTK_BOX(vbox), check1, FALSE, FALSE, 0);
     gtk_toggle_button_set_state (GTK_TOGGLE_BUTTON (check1), TRUE);
-    g_signal_connect(GTK_OBJECT(check1), "clicked", GTK_SIGNAL_FUNC(flashsms), NULL);
+    //g_signal_connect(GTK_OBJECT (check1), "active",GTK_SIGNAL_FUNC (flashsms), (char *)dx1.c_str());
+    //g_signal_connect(GTK_OBJECT (check1), "deactive",GTK_SIGNAL_FUNC (flashsms), (char *)dx2.c_str());
     check2 = CreateCheckBox (vbox, (char *)bb.c_str());
     gtk_box_pack_start(GTK_BOX(vbox), check2, FALSE, FALSE, 0);
     gtk_toggle_button_set_state (GTK_TOGGLE_BUTTON (check2), TRUE);
-    g_signal_connect(GTK_OBJECT(check2), "clicked", GTK_SIGNAL_FUNC(prioritysms), NULL);
-    
+    //g_signal_connect(GTK_OBJECT (check2), "active",GTK_SIGNAL_FUNC (prioritysms), (char *)dd1.c_str());
+    //g_signal_connect(GTK_OBJECT (check2), "deactive",GTK_SIGNAL_FUNC (prioritysms), (char *)dd2.c_str());
+
     button = gtk_button_new_with_label("Send");
     gtk_box_pack_start(GTK_BOX(vbox), button, FALSE, FALSE, 0);
     //button2 = gtk_button_new_with_label("Reset");
@@ -258,8 +268,8 @@ int main(int argc, char *argv[]) {
     g_signal_connect(button, "clicked", G_CALLBACK(getmsgx), msg);
     g_signal_connect(button, "clicked", G_CALLBACK(getuserx), user);
     g_signal_connect(button, "clicked", G_CALLBACK(getpassx), pass);
-    g_signal_connect(button, "clicked", G_CALLBACK(flashsms), NULL);
-    g_signal_connect(button, "clicked", G_CALLBACK(prioritysms), NULL);
+    g_signal_connect(button, "clicked", G_CALLBACK(flashsms), check1);
+    g_signal_connect(button, "clicked", G_CALLBACK(prioritysms), check2);
     g_signal_connect(button, "clicked", G_CALLBACK(sendsms), NULL);
     
     gtk_widget_show_all(window);
