@@ -242,12 +242,12 @@ int main(int argc, char *argv[]) {
     
     check1 = CreateCheckBox (vbox, (char *)aa.c_str());
     gtk_box_pack_start(GTK_BOX(vbox), check1, FALSE, FALSE, 0);
-    gtk_toggle_button_set_state (GTK_TOGGLE_BUTTON (check1), TRUE);
+    gtk_toggle_button_set_state (GTK_TOGGLE_BUTTON (check1), FALSE);
     //g_signal_connect(GTK_OBJECT (check1), "active",GTK_SIGNAL_FUNC (flashsms), (char *)dx1.c_str());
     //g_signal_connect(GTK_OBJECT (check1), "deactive",GTK_SIGNAL_FUNC (flashsms), (char *)dx2.c_str());
     check2 = CreateCheckBox (vbox, (char *)bb.c_str());
     gtk_box_pack_start(GTK_BOX(vbox), check2, FALSE, FALSE, 0);
-    gtk_toggle_button_set_state (GTK_TOGGLE_BUTTON (check2), TRUE);
+    gtk_toggle_button_set_state (GTK_TOGGLE_BUTTON (check2), FALSE);
     //g_signal_connect(GTK_OBJECT (check2), "active",GTK_SIGNAL_FUNC (prioritysms), (char *)dd1.c_str());
     //g_signal_connect(GTK_OBJECT (check2), "deactive",GTK_SIGNAL_FUNC (prioritysms), (char *)dd2.c_str());
 
