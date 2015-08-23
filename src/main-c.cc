@@ -278,6 +278,7 @@ int main(/*int argc, char *argv[]*/) {
 	sendsms(a,b,c,d,e,f);
    */
   // v.1.3
+  /*
 	Again:
 	std::string a = "";
 	std::string b = "";
@@ -319,6 +320,50 @@ int main(/*int argc, char *argv[]*/) {
 	  iam();
 	  exit(0);
 	}
+   */
+  // v.1.4
+	Again:
+	std::string a = "";
+	std::string b = "";
+	std::string c = "";
+	std::string d = "";
+	std::string e = "n";
+	std::string f = "n";
+	std::string h = "n";
+	std::string hh = "y";
+	
+	printf("Number: \x1B[32m");
+	getline(cin,a);
+	int valx = 0;
+	printf("Number: %s\n",a.c_str());
+	if(strtol(a.c_str(),NULL,valx) == 0){
+	  printf("\x1B[31mERROR Number! \x1B[39m\n");
+	  iam();
+	  exit(0);
+	}
+	printf("\x1B[39mMessage: \x1B[33m");
+	getline(cin,b);
+	c=getuser("\x1B[39mUsername: \x1B[31m",true); // Show asterisks
+	d=getpass("\x1B[39mPassword: \x1B[31m",true); // Show asterisks
+	printf("\x1B[32mSend as Flash SMS? (y/n) Default n : \x1B[39m");
+	getline(cin,e);
+	printf("\x1B[32mSend as Priority SMS? (y/n) Default n : \x1B[39m");
+	getline(cin,f);
+	
+	sendsms(a,b,c,d,e,f);
+	
+	printf("\x1B[32mSend again SMS? (y/n) Default n : \x1B[39m");
+	getline(cin,h);
+	
+	if(h.c_str() == hh)
+	{
+	  goto Again;
+	}
+	else{
+	  iam();
+	  exit(0);
+	}
+	
 	return 0;
 }
 
