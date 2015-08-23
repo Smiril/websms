@@ -202,8 +202,8 @@ int main(int argc, char *argv[]) {
     gtk_init(&argc, &argv);
     
     window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    gtk_window_set_title(GTK_WINDOW(window), "Smiril-websms 1.3");
-    gtk_window_set_default_size(GTK_WINDOW(window), 300, 200);
+    gtk_window_set_title(GTK_WINDOW(window), "Smiril-websms 1.4");
+    gtk_window_set_default_size(GTK_WINDOW(window), 400, 250);
     gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
     gtk_window_set_resizable(GTK_WINDOW(window), FALSE);
     //gtk_window_set_icon(GTK_WINDOW(window), gtk_xpm);
@@ -243,13 +243,11 @@ int main(int argc, char *argv[]) {
     check1 = CreateCheckBox (vbox, (char *)aa.c_str());
     gtk_box_pack_start(GTK_BOX(vbox), check1, FALSE, FALSE, 0);
     gtk_toggle_button_set_state (GTK_TOGGLE_BUTTON (check1), FALSE);
-    //g_signal_connect(GTK_OBJECT (check1), "active",GTK_SIGNAL_FUNC (flashsms), (char *)dx1.c_str());
-    //g_signal_connect(GTK_OBJECT (check1), "deactive",GTK_SIGNAL_FUNC (flashsms), (char *)dx2.c_str());
+ 
     check2 = CreateCheckBox (vbox, (char *)bb.c_str());
     gtk_box_pack_start(GTK_BOX(vbox), check2, FALSE, FALSE, 0);
     gtk_toggle_button_set_state (GTK_TOGGLE_BUTTON (check2), FALSE);
-    //g_signal_connect(GTK_OBJECT (check2), "active",GTK_SIGNAL_FUNC (prioritysms), (char *)dd1.c_str());
-    //g_signal_connect(GTK_OBJECT (check2), "deactive",GTK_SIGNAL_FUNC (prioritysms), (char *)dd2.c_str());
+ 
 
     button = gtk_button_new_with_label("Send");
     gtk_box_pack_start(GTK_BOX(vbox), button, FALSE, FALSE, 0);
