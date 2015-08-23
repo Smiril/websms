@@ -33,6 +33,14 @@
 using namespace std;
 using namespace websms; // <<< Websms.at SDK namespace
 
+const char* Versionx() {
+#ifdef VERSION
+  return VERSION;
+#else
+  return "";
+#endif
+}
+
 char *text = NULL;
 
 std::string a = "";
@@ -78,6 +86,15 @@ void prioritysms(GtkWidget *, gpointer *datad){
     dd = dd2;
 }
 
+void about(GtkButton *,gpointer *){
+    	GtkWidget *aboutx;
+	char *weabout = NULL;
+	weabout = g_strdup_printf("Version: %s \n\nUsing %s ...\n\n		Developed 2015-Aug\n\nWWW: https://github.com/Smiril/websms",Versionx(),Version());
+        aboutx = gtk_message_dialog_new_with_markup(NULL,GTK_DIALOG_MODAL, GTK_MESSAGE_INFO, GTK_BUTTONS_OK, weabout );
+	gtk_window_set_title(GTK_WINDOW(aboutx), "About");
+	gtk_dialog_run(GTK_DIALOG(aboutx));
+	gtk_widget_destroy( GTK_WIDGET(aboutx) );
+}
 void getnumberx(GtkButton *,gpointer dash11)
 {
   a = gtk_entry_get_text(GTK_ENTRY(dash11));
@@ -192,7 +209,7 @@ int main(int argc, char *argv[]) {
     GtkWidget *window;
     GtkWidget *vbox;
     GtkWidget *label,*label1,*label2,*label3,*label4;
-    GtkWidget *button,*buttonx;//,*button2;
+    GtkWidget *button,*buttonx,*button2;
     GtkWidget *user;
     GtkWidget *pass;
     GtkWidget *number;
@@ -251,8 +268,9 @@ int main(int argc, char *argv[]) {
 
     button = gtk_button_new_with_label("Send");
     gtk_box_pack_start(GTK_BOX(vbox), button, FALSE, FALSE, 0);
-    //button2 = gtk_button_new_with_label("Reset");
-    //gtk_box_pack_start(GTK_BOX(vbox), button2, FALSE, FALSE, 0);
+    
+    button2 = gtk_button_new_with_label("About");
+    gtk_box_pack_start(GTK_BOX(vbox), button2, FALSE, FALSE, 0);
     
     buttonx = gtk_link_button_new_with_label("https://websms.at/websms-testen","Visit the SMS Provider");
     gtk_box_pack_start(GTK_BOX(vbox), buttonx, FALSE, FALSE, 0);
@@ -269,6 +287,7 @@ int main(int argc, char *argv[]) {
     g_signal_connect(button, "clicked", G_CALLBACK(flashsms), check1);
     g_signal_connect(button, "clicked", G_CALLBACK(prioritysms), check2);
     g_signal_connect(button, "clicked", G_CALLBACK(sendsms), NULL);
+    g_signal_connect(button2, "clicked", G_CALLBACK(about), NULL);
     
     gtk_widget_show_all(window);
  
