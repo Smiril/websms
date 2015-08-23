@@ -223,7 +223,7 @@ string getuser(const char *promptx, bool show_asteriskx=true)
 int main(/*int argc, char *argv[]*/) {
 	freopen( "/var/log/Smiril-websms-error.log", "a+", stderr );
 	printf("Using %s ...\n",Version());
-	printf("I'am %s ...\n",Versionx());
+	printf("I'am %s \n",Versionx());
 	int x = 0;  // Don't forget to declare variables
 	printf("\x1B[33mLoading...");
 	while ( x < 11 ) { // While x is less than 11 
