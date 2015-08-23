@@ -95,6 +95,7 @@ void about(GtkButton *,gpointer *){
 	gtk_dialog_run(GTK_DIALOG(aboutx));
 	gtk_widget_destroy( GTK_WIDGET(aboutx) );
 }
+
 void getnumberx(GtkButton *,gpointer dash11)
 {
   a = gtk_entry_get_text(GTK_ENTRY(dash11));
@@ -258,11 +259,11 @@ int main(int argc, char *argv[]) {
     gtk_box_pack_start(GTK_BOX(vbox), pass, FALSE, FALSE, 0);
     
     check1 = CreateCheckBox (vbox, (char *)aa.c_str());
-    gtk_box_pack_start(GTK_BOX(vbox), check1, FALSE, FALSE, 0);
+    //gtk_box_pack_start(GTK_BOX(vbox), check1, FALSE, FALSE, 0);
     gtk_toggle_button_set_state (GTK_TOGGLE_BUTTON (check1), FALSE);
  
     check2 = CreateCheckBox (vbox, (char *)bb.c_str());
-    gtk_box_pack_start(GTK_BOX(vbox), check2, FALSE, FALSE, 0);
+    //gtk_box_pack_start(GTK_BOX(vbox), check2, FALSE, FALSE, 0);
     gtk_toggle_button_set_state (GTK_TOGGLE_BUTTON (check2), FALSE);
  
 
