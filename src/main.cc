@@ -236,7 +236,7 @@ int main(int argc, char *argv[]) {
     label1 = gtk_label_new("Number");
     gtk_box_pack_start(GTK_BOX(vbox), label1, FALSE, FALSE, 0);
     number = gtk_entry_new();
-    gtk_entry_set_max_length(GTK_ENTRY(number),16781331);
+    gtk_entry_set_max_length(GTK_ENTRY(number),201330687);
     gtk_box_pack_start(GTK_BOX(vbox), number, FALSE, FALSE, 0);
     
     label2 = gtk_label_new("Text Message");
