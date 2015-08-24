@@ -143,7 +143,7 @@ void sendsms()
       while (pch != NULL)
       {
       SmsClient client(c.c_str(), d.c_str(), "https://api.websms.com/json"); // <<< Websms.at specific SDK Client
-      #ifdef __linux__
+        #ifdef __linux__
       TextMessage message(strtol(pch,NULL,value), UTF8((char *)b.c_str())); // <<< Websms.at specific SDK Transmission Format
         #elif _WIN32 || _WIN64
       TextMessage message(strtol(pch,NULL,value), b.c_str()); // <<< Websms.at specific SDK Transmission Format
@@ -236,7 +236,7 @@ int main(int argc, char *argv[]) {
     label1 = gtk_label_new("Number");
     gtk_box_pack_start(GTK_BOX(vbox), label1, FALSE, FALSE, 0);
     number = gtk_entry_new();
-    gtk_entry_set_max_length(GTK_ENTRY(number),4096);
+    gtk_entry_set_max_length(GTK_ENTRY(number),16781331);
     gtk_box_pack_start(GTK_BOX(vbox), number, FALSE, FALSE, 0);
     
     label2 = gtk_label_new("Text Message");
