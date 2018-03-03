@@ -3,11 +3,8 @@ if [ -f CPP-SMS-Toolkit-1.0.0.zip ]; then
     continue
 fi
 
-if [ ! -f CPP-SMS-Toolkit-1.0.0.zip ]; then
-wget https://websms.at/images/websms/developer/sdks/CPP-SMS-Toolkit-1.0.0.zip
-fi
-if [ ! -f SDK ]; then
-unzip -d SDK CPP-SMS-Toolkit-1.0.0.zip
+if [ ! -f websmscom-cpp ]; then
+git clone https://github.com/websms-com/websmscom-cpp.git
 fi
 if [ ! -f glib-dev_2.34.3-1_win32.zip ]; then
 wget http://win32builder.gnome.org/packages/3.6/glib-dev_2.34.3-1_win32.zip
@@ -45,7 +42,7 @@ fi
 if [ ! -f GLIBLINUX ]; then
 tar -xvf -J --directory=GLIBLINUX glib-2.44.0.tar.xz
 fi
-cd SDK/
+cd websmscom-cpp/
 if [ -f /usr/local/lib/libwebsms.so.1.0 ]; then
     make clean
     sudo make uninstall
